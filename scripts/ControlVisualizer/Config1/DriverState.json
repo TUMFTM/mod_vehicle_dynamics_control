@@ -1,0 +1,37 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Status"],
+"ts":
+  ["debug_mvdc_trajectory_driver_debug_Strategy_Status",
+    "debug_mvdc_trajectory_driver_debug_DriverStatus"],
+"labels":
+  ["Strategy", "Driver"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Status"],
+"ts":
+  ["debug_mvdc_trajectory_driver_debug_Strategy_CommsStatus",
+  "debug_mvdc_trajectory_driver_debug_Trajectories_CommsStatus",
+  "debug_mvdc_trajectory_driver_debug_PathMatchingStatus",
+  "debug_mvdc_trajectory_driver_debug_EnablePathMatching",
+  "debug_mvdc_trajectory_driver_debug_EnableDriving"],
+"labels":
+  ["Strategy Comms","Trajectories Comms","Path matching",
+    "Enable path matching", "Enable driving"]
+},
+"plot3": {
+"posx": "3",
+"posy": "1",
+"ylabel": ["Status"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_ControlState",
+   "debug_mvdc_curvvel_tracking_debug_EnableDriving",
+   "debug_mvdc_curvvel_tracking_debug_EnableEmergency"],
+"labels":
+  ["Control state", "Enable driving", "Enable emergency"]
+}
+}

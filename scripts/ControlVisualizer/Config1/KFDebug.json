@@ -1,0 +1,84 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Position in m"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m",
+   "debug_VehicleSensorData_x_GPS_m",
+   "debug_VehicleSensorData_x_VLOC_m",
+   "debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m",
+   "debug_VehicleSensorData_y_GPS_m",
+   "debug_VehicleSensorData_y_VLOC_m"],
+"labels":
+  ["xEast Estimate","xEast GPS", "xEast VLOC",
+  "yNorth Estimate", "yNorth GPS", "yNorth VLOC"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Residuals in m"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_xGPS_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_yGPS_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_xVLOC_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_yVLOC_m"],
+"labels":
+  ["xEast GPS","yNorth GPS","xEast VLOC","yNorth VLOC"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Orientation in rad"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_Pos_psi_rad",
+   "debug_VehicleSensorData_psi_YawAngle_rad",
+   "debug_VehicleSensorData_psi_VLOC_rad"],
+"labels":
+  ["Estimate", "GPS", "VLOC"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Residuals in rad"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_PsiVLOC_rad",
+   "debug_mvdc_state_estimation_debug_Residuals_res_PsiGPS_rad"],
+"labels":
+  ["VLOC", "GPS"]
+},
+"plot5": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Speed in mps"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_vx_mps",
+   "debug_VehicleSensorData_vx_CoG_mps",
+   "debug_mvdc_state_estimation_debug_StateEstimate_vy_mps",
+   "debug_VehicleSensorData_vy_CoG_mps"],
+"labels":
+  ["vx Estimate", "vx Sensor", "vy Estimate", "vy Sensor"]
+},
+"plot6": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["Residuals in mps"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_vx_mps",
+   "debug_mvdc_state_estimation_debug_Residuals_res_vy_mps"],
+"labels":
+  ["vx", "vy"]
+},
+"plot7": {
+"posx": "2",
+"posy": "4",
+"ylabel": ["Residuals in m"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_sGPS_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_dGPS_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_sVLOC_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_dVLOC_m"],
+"labels":
+  ["sGPS", "dGPS", "sVLOC", "dVLOC"]
+}
+}

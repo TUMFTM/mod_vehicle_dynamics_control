@@ -1,0 +1,35 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Acceleration", "CG in mps2"],
+"ts":
+  ["debug_VehicleSensorData_ax_CoG_mps2",
+   "debug_VehicleSensorData_ay_CoG_mps2",
+   "debug_VehicleSensorData_az_CoG_mps2"],
+"labels":
+  ["x", "y", "z"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Rate", "in radps"],
+"ts":
+  ["debug_VehicleSensorData_dPhi_RollRate_radps",
+   "debug_VehicleSensorData_dTheta_PitchRate_radps",
+   "debug_VehicleSensorData_dPsi_YawRate_radps"],
+"labels":
+  ["Roll", "Pitch", "Roll"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Angle", "in rad"],
+"ts":
+  ["debug_VehicleSensorData_phi_RollAngle_rad",
+   "debug_VehicleSensorData_theta_PitchAngle_rad",
+   "debug_VehicleSensorData_psi_YawAngle_rad"],
+"labels":
+  ["Roll", "Pitch", "Yaw"]
+}
+}

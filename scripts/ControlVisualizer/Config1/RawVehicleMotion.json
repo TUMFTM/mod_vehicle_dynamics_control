@@ -1,0 +1,43 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Position in m"],
+"ts":
+  ["debug_VehicleSensorData_x_GPS_m",
+   "debug_VehicleSensorData_y_GPS_m",
+   "debug_VehicleSensorData_z_GPS_m"],
+"labels":
+  ["x", "y", "z"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Velocity in mps"],
+"ts":
+  ["debug_VehicleSensorData_vx_CoG_mps",
+   "debug_VehicleSensorData_vy_CoG_mps"],
+"labels":
+  ["vx", "vy"]
+},
+"plot3": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Acceleration", "CG in mps2"],
+"ts":
+  ["debug_VehicleSensorData_ax_CoG_mps2",
+   "debug_VehicleSensorData_ay_CoG_mps2",
+   "debug_VehicleSensorData_az_CoG_mps2"],
+"labels":
+  ["x", "y", "z"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Beta", "in rad"],
+"ts":
+  ["debug_VehicleSensorData_Beta_CoG_rad"],
+"labels":
+  ["Beta"]
+}
+}

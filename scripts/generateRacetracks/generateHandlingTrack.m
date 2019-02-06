@@ -1,0 +1,73 @@
+clear all; 
+close all; 
+
+% generates a handling track as a test track for tracking control applications
+
+% track is specified as segment length, curvature and width
+track_def = [0, 0, 10;...
+  80, 0, 10;...
+  30, 0.1, 8;...
+  20, 0, 8;...
+  5, 0, 6;...
+  10, -0.06, 6;...
+  30, -0.06, 6;...
+  30, 0.1, 6;...
+  10, 0.1, 6;...
+  35, 0, 12;...
+  60, 0, 12;...
+  20, -0.025, 10;...
+  40, -0.025, 10;...
+  20, -0.1, 8;...
+  40, 0.1, 10;...
+  50, 0, 12;...
+  35, 0, 12;...
+  18, 0.1, 12;...
+  20, 0, 8;...
+  51.7, 0, 8;...
+  10, 0.068, 8;...
+  8.5, 0, 8;...
+  ];
+nPointsSample = 500; 
+s_vec = cumsum(track_def(:, 1)); 
+
+% define integrator equations
+psi_rad_der = @(x) interp1(cumsum(track_def(:, 1)), track_def(:, 2), x);
+new_s = linspace(s_vec(1), s_vec(end), 500); 
+
+for i = 1:1:length(new_s)
+  psi_rad(i) = integral(psi_rad_der, 0, new_s(i)); 
+end
+
+
+% define integrator equations for position 
+x_m_der = @(x) interp1(new_s, -sin(psi_rad), x); 
+y_m_der = @(x) interp1(new_s, cos(psi_rad), x); 
+for i = 1:1:length(new_s)
+  x_m(i) = integral(x_m_der, 0, new_s(i)); 
+  y_m(i) = integral(y_m_der, 0, new_s(i)); 
+end
+% calculate track width 
+b_m = interp1(s_vec, track_def(:, 3), new_s); 
+
+figure; 
+subplot(3, 1, 1); 
+plot(s_vec, track_def(:, 2)); 
+ylabel('Curvature [radpm]'); 
+grid on; 
+subplot(3, 1, 2); 
+plot(new_s, psi_rad); 
+ylabel('Orientation [rad]'); 
+grid on; 
+subplot(3, 1, 3); 
+plot(new_s, b_m); 
+ylabel('Track width [m]'); 
+grid on; 
+
+figure; 
+plot(x_m, y_m); 
+axis equal; 
+grid on;
+xlabel('x in [m]'); 
+ylabel('y in [m]');
+% write to csv
+dlmwrite('HandlingTrack.csv', [x_m',y_m',b_m'], ';'); 

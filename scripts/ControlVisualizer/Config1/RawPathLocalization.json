@@ -1,0 +1,29 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Path coordinate", "s in m"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_s_m"],
+"labels":
+  ["s in m"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Path coordinate", "d in m"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_d_m"],
+"labels":
+  ["d in m"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Path coordinate", "psi in rad"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_psi_rad"],
+"labels":
+  ["psi in rad"]
+}
+}
