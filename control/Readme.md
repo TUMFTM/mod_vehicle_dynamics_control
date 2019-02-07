@@ -1,5 +1,7 @@
 # Package overview
-The *control* package collects all functionality related to controllers and directly related pre- or postprocessing methods. The core components are the lateral tracking controller (high level control) and the curvature controller and the velocity controller (low level controller). The latter are mainly responsible of abstracting the vehicle dynamics influence to the high level controller. The lateral tracking controller itself can therefore be designed on very basic model assumptions.
+The *control* package collects all functionality related to controllers and directly related pre- or postprocessing methods. The core components are the lateral tracking controller (high level control) and the curvature controller and the velocity controller (low level controller). The latter are mainly responsible of abstracting the vehicle dynamics influence to the high level controller. The lateral tracking controller itself can therefore be designed on very basic model assumptions. The general structure is depicted here:
+
+![Controller Structure](controller_structure.PNG)
 
 Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
 
@@ -26,7 +28,7 @@ The most important parameter in this algorithm is the handling of safety checks 
 
 If only cartesian coordinates and a velocity profile is provided to the controller, `P_VDC_LocalFFCalculationActive_b` must be set to true. This triggers local calculation of the required feedforward information about the path based on numeric derivatives.
 
-The path smoothing algorithm can be activated via `P_VDC_SmoothPathActive_b`. In general, this is not recommend and should only be used temporarly in case the trajectory planner delivers noisy results. It will alter the path significantly at some points and therefore might violate path constraints. 
+The path smoothing algorithm can be activated via `P_VDC_SmoothPathActive_b`. In general, this is not recommend and should only be used temporarly in case the trajectory planner delivers noisy results. It will alter the path significantly at some points and therefore might violate path constraints.
 
 #### Path Feedback: `xx_mvdc_path_feedback`
 This algorithm has several parameters which have to be set in a vehicle specific way and fine tuned in real world driving.
