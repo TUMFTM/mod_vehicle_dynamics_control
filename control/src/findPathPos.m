@@ -29,22 +29,20 @@ function [s_m_path, x_m_path, y_m_path, psi_rad_path,...
 % calculate difference vectors 
 diff_x_m = x_m_veh - x_m_vec; 
 diff_y_m = y_m_veh - y_m_vec;
-dist_squared_trialpoints = zeros(length(diff_x_m), 1); 
-for i = 1:1:length(x_m_vec)
-  dist_squared_trialpoints(i) = diff_x_m(i)^2 + diff_y_m(i)^2;
-end
+dist_squared_trialpoints = diff_x_m.^2 + diff_y_m.^2; 
 % find minimum distance element 
-[mindist_m, idx_mindist] = min(dist_squared_trialpoints);
+[mindist_squared_m, idx_mindist] = min(dist_squared_trialpoints);
 % retrieve path points 
 s_m_path = s_m_vec(idx_mindist); 
 x_m_path = x_m_vec(idx_mindist); 
 y_m_path = y_m_vec(idx_mindist); 
 psi_rad_path = psi_rad_vec(idx_mindist); 
-% change difference vector origin to path coordinates (not vehicle) 
+% calculate sign of control error
 diffvec_rot = [cos(-psi_rad_vec(idx_mindist)), -sin(-psi_rad_vec(idx_mindist))]*...
   [diff_x_m(idx_mindist);diff_y_m(idx_mindist)]; 
-d_m_veh = -sign(diffvec_rot)*sqrt(mindist_m); 
 % calculate path orientation
 psi_rad_veh_p = normalizeAngle(psi_rad_veh_g - psi_rad_path);
+% project difference vector onto path
+d_m_veh = -sign(diffvec_rot)*sqrt(mindist_squared_m)*cos(psi_rad_veh_p); 
 
 

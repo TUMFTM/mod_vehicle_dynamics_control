@@ -1,4 +1,4 @@
-function [x_est, P_est, res] = ekf_update( x_pred, z, H_d, R, n, m,...
+function [x_est, P_est, res] = ekf_update(x_pred, z, H_d, R, n, m,...
                                      P_pred, outlier_bound)
 
 %__________________________________________________________________________
@@ -13,7 +13,7 @@ function [x_est, P_est, res] = ekf_update( x_pred, z, H_d, R, n, m,...
 %               Handles outliers according to the bounds specified. 
 % 
 % Inputs: 
-%   x                 State estimate vector before correction
+%   x_pred            State estimate vector before correction
 %   z                 Measurement vector
 %   H_d               Measurement matrix 
 %   R                 Measurement covariance matrix 
@@ -44,11 +44,12 @@ S = H_d * P_pred * H_d' + R;
 % Kalman Gain (near-optimal)
 K = P_pred * H_d' / S;  
 
-% detect outliers if they are larger than outlier_bound*sigma
-meas_sigma_vec = sqrt(diag(R)); 
-fusion_y = res; 
-% set the corresponding residual to for fusion (outlier) 
-% fusion_y(abs(y)>meas_sigma_vec.*outlier_bound) = 0; 
+% detect outliers if they are larger than outlier_bound
+% limit the values to outlier_bound
+fusion_y = zeros(length(res), 1); 
+for i = 1:1:length(res)
+    fusion_y(i) = min(abs(res(i)), outlier_bound(i))*sign(res(i));
+end
 
 % Updated state estimate
 x_est = x_pred + K * fusion_y; 

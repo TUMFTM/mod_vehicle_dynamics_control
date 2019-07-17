@@ -26,6 +26,19 @@ catch e
   error('Setup of build folder failed.'); 
 end
 
+try
+    % make sure that one parameter set is loaded
+    configureVDCModule('pa');
+    configureVDCBuildModelConfig('GRT'); 
+    % configure vehicle dynamics simulation 
+    configureSimBuildModelConfig('GRT'); 
+    % configure scenario 
+    loadScenario('Berlin2019'); 
+catch e
+    disp('Exception: ');
+    disp(getReport(e))
+  error('Parameter setup failed.'); 
+end
 myCacheFolder = fullfile(projectRoot, 'build');
 myCodeFolder = fullfile(projectRoot, 'build');
 

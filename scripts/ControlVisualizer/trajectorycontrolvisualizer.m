@@ -22,7 +22,7 @@ function varargout = trajectorycontrolvisualizer(varargin)
 
 % Edit the above text to modify the response to help trajectorycontrolvisualizer
 
-% Last Modified by GUIDE v2.5 20-Dec-2018 13:07:32
+% Last Modified by GUIDE v2.5 10-Mar-2019 09:23:00
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -60,42 +60,6 @@ matlabImage = imread('TUM-Logo-40.png');
 image(matlabImage)
 axis off
 axis image
-
-%% initialize plot interface 
-nVert = 5; 
-nHor = 5; 
-p0_hor = 70; 
-p0_vert = 100; 
-space_hor = 20; 
-space_vert = 7; 
-width = 150; 
-height = 15; 
-
-% dialog to select folder with config 
-handles.plotConfig_path = uigetdir(pwd, 'Select debug config folder'); 
-% load config 
-plotConfig_temp = dir(handles.plotConfig_path);
-% the file list returns also the current and upper folder handles as
-% virtual files, therefore to files must be removed
-plotConfig = plotConfig_temp(3:end); 
-nPlots = length(plotConfig); 
-
-% create checkboxes to use 
-for i = 0:1:(nPlots-1)
-   % determine position for checkbox, starting with index at 0
-   xPos = floor(i/nVert);
-   yPos = mod(i,nVert); 
-   % calculate coordinates 
-   cb_pos = [p0_hor+xPos*(space_hor+width), p0_vert-yPos*(space_vert+height), width, height];
-   % get file name
-   plotName_raw = plotConfig(i+1).name; 
-   % remove file ending
-   plotName = plotName_raw(1:(end-5));
-   % create array with plot IDs (the file names from the jsons) 
-   handles.plotIDs{i+1} = plotName; 
-   handles.cb_array{i+1} =  uicontrol('Style', 'checkbox', 'Position',cb_pos, 'String', plotName);
-   handles.fig_array{i+1} = []; 
-end
 
 % Update handles structure
 guidata(hObject, handles);
@@ -267,36 +231,56 @@ function updateErrors(hObject, eventdata, handles, tStart, tEnd)
     [idxStart,idxEnd] = find_ts_idx(handles.debug.debug_mvdc_trajectory_driver_perf_eRMS_kappa_radpm,tStart,tEnd); 
     handles.curverrrms.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_eRMS_kappa_radpm.Data(idxEnd));
     handles.curverrpeak.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_ePeak_kappa_radpm.Data(idxEnd));
-    
-    [idxStart,idxEnd] = find_ts_idx(handles.debug.debug_mvdc_trajectory_driver_perf_eControlRMS_v_mps,tStart,tEnd); 
-    handles.vdc_velerrrms.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_eControlRMS_v_mps.Data(idxEnd));
-    handles.vdc_velerrpeak.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_eControlPeak_v_mps.Data(idxEnd));
-    [idxStart,idxEnd] = find_ts_idx(handles.debug.debug_mvdc_trajectory_driver_perf_eControlRMS_kappa_radpm,tStart,tEnd); 
-    handles.vdc_curverrrms.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_eControlRMS_kappa_radpm.Data(idxEnd));
-    handles.vdc_curverrpeak.String = num2str(handles.debug.debug_mvdc_trajectory_driver_perf_eControlPeak_kappa_radpm.Data(idxEnd));
-    
+        
 % --- Executes on button press in loaddataset.
 function loaddataset_Callback(hObject, eventdata, handles)
 % hObject    handle to loaddataset (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-  % load dataset
-  [FileName,PathName] = uigetfile('*.mat','Select the debug data file');
-  if((FileName == 0))
-    disp('No file selected'); 
-    return
+  % delete data set
+  if (isfield(handles,'debug'))
+    handles=rmfield(handles,'debug');
   end
-  disp('Loading file'); 
-  data = load([PathName FileName]);
+  if (isfield(handles,'real_physics'))
+    handles=rmfield(handles,'real_physics');
+  end
+  if (isfield(handles,'sim_physics'))
+    handles=rmfield(handles,'sim_physics');
+  end
+  
+  % load dataset
+    [FileName,PathName] = uigetfile('*.mat','Select the debug data file');
+    if((FileName == 0))
+      disp('No file selected'); 
+      return
+    end
+    
+    disp('Loading file');
+    data = load([PathName FileName]);
+  
 	if(isfield(data, 'debug'))
-    disp('Dataset found'); 
+    disp('Dataset debug found'); 
     handles.debug = data.debug;
     handles.datasetname.String = FileName; 
-  else
+    else
     disp('No data found in file'); 
     return; 
-  end
+    end
+  
+    if(isfield(data, 'real_physics'))
+    disp('Dataset real_physics found'); 
+    handles.real_physics = data.real_physics;
+    else
+    disp('Dataset does not contain real_physics structure');
+    end
+    
+    if(isfield(data, 'sim_physics'))
+    disp('Dataset sim_physics found'); 
+    handles.sim_physics = data.sim_physics;
+    else
+    disp('Dataset does not contain sim_physics structure');
+    end
 
 % check if there are open windows (if yes, close) 
 closevisz_Callback(hObject, eventdata, handles);
@@ -410,41 +394,92 @@ function updatevisz_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
   
 % check if there are datasets
-if(~isfield(handles, 'debug'))
+if(~isfield(handles, 'debug') && ~isfield(handles, 'real_physics') && ~isfield(handles, 'sim_physics'))
   disp('No data loaded'); 
   return; 
 end
 
-% read out right start and stop times 
-if(handles.SimpleMode)
-  tStart = handles.tStart_simple; 
-  tEnd = handles.tEnd_simple; 
-else
-  tStart = handles.tStart_lap; 
-  tEnd = handles.tEnd_lap; 
+% check analysis struct
+str=get(handles.analysisstruct,'String');
+val=get(handles.analysisstruct,'Value');
+
+switch str{val}
+    case 'none'
+        disp('No visualization options chosen. Select analysis struct first.')
+        analysismode='none';
+    case 'debug'
+        if isfield(handles,'debug')
+            analysisdata=handles.debug;
+            analysismode='debug';
+        else
+            analysismode='notavailable';
+        end
+    case 'real_physics'
+        if isfield(handles,'real_physics')
+            analysisdata=handles.real_physics';
+            analysismode='real_physics';
+        else
+            analysismode='notavailable';
+        end
+    case 'sim_physics'
+        if isfield(handles,'sim_physics')
+            analysisdata=handles.sim_physics;
+            analysismode='sim_physics';
+        else
+            analysismode='notavailable';
+        end
 end
 
-% check if the figure handles do not exist or have been destroyed and are not 
-% a valid figure handle anymore. Further, the figure needs to be activated. 
-for i = 1:1:length(handles.plotIDs)
-    % if the corresponding checkbox is pressed and there is no valid figure
-    % handle, create one. 
-    if(handles.cb_array{i}.Value == 1)
-        if(isempty(handles.fig_array{i}))
-            handles.fig_array{i} = figure('Name', handles.plotIDs{i});
-        elseif(~isvalid(handles.fig_array{i}))
-            handles.fig_array{i} = figure('Name', handles.plotIDs{i});
+switch analysismode
+    case 'none'
+    case 'notavailable'
+        
+        disp('Required analysis struct not available in dataset')
+        
+    case {'debug','real_physics','sim_physics'}
+            
+        % read out right start and stop times 
+        if(handles.SimpleMode)
+          tStart = handles.tStart_simple; 
+          tEnd = handles.tEnd_simple; 
+        else
+          tStart = handles.tStart_lap; 
+          tEnd = handles.tEnd_lap; 
         end
-        try
-            % get plot configuration
-            myjson=fileread([handles.plotConfig_path '\' handles.plotIDs{i} '.json']); 
-            myjson_parsed = jsondecode(myjson); 
-            visz_plotGroup(createPlotGroup(handles.debug, myjson_parsed), ...
-              handles.fig_array{i}, tStart, tEnd); 
-        catch
-           disp(['Error while plotting ' handles.plotIDs{i}]); 
+        
+        % check if selection of visualization options is empty
+        numberoffigures=0;
+        for i = 1:1:length(handles.plotIDs)
+            temp=numberoffigures;
+            numberoffigures= handles.cb_array{i}.Value + temp;
         end
-    end
+        if numberoffigures==0
+            disp('No visualization options chosen')
+        end
+        
+        % check if the figure handles do not exist or have been destroyed and are not 
+        % a valid figure handle anymore. Further, the figure needs to be activated. 
+        for i = 1:1:length(handles.plotIDs)
+            % if the corresponding checkbox is pressed and there is no valid figure
+            % handle, create one. 
+            if(handles.cb_array{i}.Value == 1)
+                if(isempty(handles.fig_array{i}))
+                    handles.fig_array{i} = figure('Name', handles.plotIDs{i});
+                elseif(~isvalid(handles.fig_array{i}))
+                    handles.fig_array{i} = figure('Name', handles.plotIDs{i});
+                end        
+                try
+                    % get plot configuration
+                    myjson=fileread([handles.plotConfig_path '\' handles.plotIDs{i} '.json']); 
+                    myjson_parsed = jsondecode(myjson); 
+                    visz_plotGroup(createPlotGroup(analysisdata, analysismode, myjson_parsed), ...
+                      handles.fig_array{i}, tStart, tEnd); 
+                catch
+                   disp(['Error while plotting ' handles.plotIDs{i}]); 
+                end
+            end
+        end
+        
 end
 
 guidata(hObject, handles); 
@@ -482,10 +517,12 @@ function closevisz_Callback(hObject, eventdata, handles)
 
 % this function closes all open windows, in case their figure handle exists
 % and it is a valid handle. This is necessary to prevent the programm from crashing. 
+if isfield(handles,'plotIDs')
 for i = 1:1:length(handles.plotIDs)
     if(~isempty(handles.fig_array{i}) && isvalid(handles.fig_array{i}))
         close(handles.fig_array{i}); 
     end
+end
 end
 disp('Closed figures'); 
 
@@ -517,3 +554,112 @@ else
   updateMainGUIMap(hObject, eventdata, handles); 
 end
 handles = guidata(hObject); 
+
+
+% --- Executes on selection change in analysisstruct.
+function analysisstruct_Callback(hObject, eventdata, handles)
+% hObject    handle to analysisstruct (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns analysisstruct contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from analysisstruct
+
+% check analysis struct
+str=get(handles.analysisstruct,'String');
+val=get(handles.analysisstruct,'Value');
+
+switch str{val}
+    case 'none'
+        set(handles.uibuttongroup2,'Title','No visualization options available');
+    case 'debug'
+        set(handles.uibuttongroup2,'Title','Choose debug visualizations to show');
+    case 'real_physics'
+        set(handles.uibuttongroup2,'Title','Choose real_physics visualizations to show');
+    case 'sim_physics'
+        set(handles.uibuttongroup2,'Title','Choose sim_physics visualizations to show');     
+end
+
+% Close open figures
+if isfield(handles,{'plotIDs','cb_array','fig_array'}) 
+for i = 1:1:length(handles.plotIDs)
+    if(~isempty(handles.fig_array{i}) && isvalid(handles.fig_array{i}))
+        close(handles.fig_array{i}); 
+    end
+end
+end
+disp('Closed figures');
+
+% Remove check boxes from current handles object
+if isfield(handles,{'cb_array'})
+for i=1:numel(handles.cb_array)
+    delete(handles.cb_array{i})
+end
+end
+
+% Remove variables from handles object
+if isfield(handles,{'plotIDs','cb_array','fig_array'})
+handles=rmfield(handles,{'plotIDs','cb_array','fig_array'});
+end
+
+% Force graphical update of GUI 
+drawnow 
+
+% Load new visualization options upon selection of Analysis struct 
+switch str{val}
+
+    case 'none'
+        
+    case {'debug','real_physics','sim_physics'}    
+    
+        % Initialise new plot interface
+        nVert = 5; 
+        nHor = 5; 
+        p0_hor = 70; 
+        p0_vert = 115; 
+        space_hor = 20; 
+        space_vert = 7; 
+        width = 150; 
+        height = 15; 
+
+        % dialog to select folder with config 
+        handles.plotConfig_path = uigetdir(pwd, strcat('Select ',str{val},' visualization config folder')); 
+        % load config 
+        plotConfig_temp = dir(handles.plotConfig_path);
+        % the file list returns also the current and upper folder handles as
+        % virtual files, therefore to files must be removed
+        plotConfig = plotConfig_temp(3:end); 
+        nPlots = length(plotConfig); 
+
+        % create checkboxes to use 
+        for i = 0:1:(nPlots-1)
+           % determine position for checkbox, starting with index at 0
+           xPos = floor(i/nVert);
+           yPos = mod(i,nVert); 
+           % calculate coordinates 
+           cb_pos = [p0_hor+xPos*(space_hor+width), p0_vert-yPos*(space_vert+height), width, height];
+           % get file name
+           plotName_raw = plotConfig(i+1).name; 
+           % remove file ending
+           plotName = plotName_raw(1:(end-5));
+           % create array with plot IDs (the file names from the jsons) 
+           handles.plotIDs{i+1} = plotName; 
+           handles.cb_array{i+1} =  uicontrol('Style', 'checkbox', 'Position',cb_pos, 'String', plotName);
+           handles.fig_array{i+1} = []; 
+        end
+
+end
+
+guidata(hObject,handles)
+
+% --- Executes during object creation, after setting all properties.
+function analysisstruct_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to analysisstruct (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

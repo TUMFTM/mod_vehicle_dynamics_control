@@ -17,7 +17,7 @@
   "debug_mvdc_curvvel_tracking_debug_Long_TargetSpeed_mps",
   "debug_mvdc_state_estimation_debug_StateEstimate_v_mps"],
 "labels":
-  ["Target (Trajectory)", "Target (Trajectory)",
+  ["Target (Trajectory)", "Target (Control)",
   "Actual"]
 },
 "plot3": {
@@ -29,9 +29,12 @@
    "debug_mvdc_curvvel_tracking_debug_Long_FB_Dist_FxReq_N",
    "debug_mvdc_curvvel_tracking_debug_Long_FF_Dist_FxReq_N",
    "debug_mvdc_curvvel_tracking_debug_Long_FF_Traj_FxReq_N",
-   "debug_mvdc_curvvel_tracking_debug_CO_RequestLongForce_N"],
+   "debug_mvdc_curvvel_tracking_debug_TCCorrectiveForce_N",
+   "debug_mvdc_curvvel_tracking_debug_MaximumLongForce_N",
+   "debug_mvdc_curvvel_tracking_debug_Req_Fx_N"],
 "labels":
-  ["FB Velocity Difference", "FB Disturbance", "FF Disturbance", "FF Trajectory", "Overall"]
+  ["FB Velocity Difference", "FB Disturbance", "FF Disturbance",
+    "FF Trajectory", "TC Correction", "TC Limit", "Overall"]
 },
 "plot4": {
 "posx": "1",
@@ -41,6 +44,6 @@
   ["debug_mvdc_curvvel_tracking_debug_Long_axTarget_mps2",
    "debug_mvdc_state_estimation_debug_StateEstimate_ax_mps2"],
 "labels":
-  ["Target", "Actual"]
+  ["Target (Control)", "Actual"]
 }
 }

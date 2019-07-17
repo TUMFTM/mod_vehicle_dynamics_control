@@ -1,0 +1,22 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Slip in perc"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_TCSlipDifference_perc"],
+"labels":
+  ["Slip in perc"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Force in N"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_TCCorrectiveForce_N",
+  "debug_mvdc_curvvel_tracking_debug_TCProportionalForce_N",
+  "debug_mvdc_curvvel_tracking_debug_TCIntegralForce_N"],
+"labels":
+  ["Corrective Force Overall","Proportional","Integral"]
+}
+}

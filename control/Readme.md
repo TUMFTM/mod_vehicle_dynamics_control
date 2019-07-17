@@ -1,24 +1,24 @@
 # Package overview
-The *control* package collects all functionality related to controllers and directly related pre- or postprocessing methods. The core components are the lateral tracking controller (high level control) and the curvature controller and the velocity controller (low level controller). The latter are mainly responsible of abstracting the vehicle dynamics influence to the high level controller. The lateral tracking controller itself can therefore be designed on very basic model assumptions. The general structure is depicted here:
-
-![Controller Structure](controller_structure.PNG)
+The *control* package collects all functionality related to controllers and directly related pre- or postprocessing methods. The core components are the lateral tracking controller (high level control) and the curvature controller and the velocity controller (low level controller). The latter are mainly responsible of abstracting the vehicle dynamics influence to the high level controller. The lateral tracking controller itself can therefore be designed on very basic model assumptions.
 
 Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
 
 # Models
 * `mvdc_trajectory_driver.slx` is the main model of this package and is therefore a good starting point to dive deeper into the package. It combines the different subcomponents to a single function used by the software.
 * `mvdc_curvvel_tracking.slx` collects the curvature and velocity control algorithms. Both utilize proportional feedback and a disturbance observer to add integral effect (optional) to control the low level vehicle dynamics. Furthermore, handling of stillstand situations (controller settings).
-* `mvdc_path_feedback.slx` is the high level lateral feedback controller. It is based on a point-mass assumption and does not alter the speed profile. It does not respect the physical limits of the vehicle directly.
+* `mvdc_path_feedback.slx` is the standard lateral feedback controller. It is based on a point-mass assumption and does not alter the speed profile. It does not respect the physical limits of the vehicle directly.
+* `mvdc_exactlin_feedback` is an alternative tracking controller which combines path tracking and vehicle dynamics control into a single design.
 * `mvdc_path_matching.slx` handles the path interface to the trajectory planner and provides the vehicle position in path coordinates (lateral distance and heading angle).
 
 # Source
 * `calcPathAx.m` calculates the acceleration values corresponding to the given velocity profile for the feedforward control as an alternative to the provided one.
 * `calcPathHeading.m` calculates the path heading values corresponding to the given points for the feedforward control as an alternative to the provided one.
 * `calcPathCurvature.m` calculates the acceleration values corresponding to the given path for the feedforward control as an alternative to the provided one.
+* `exactlin_feedback.m` implements the nonlinear exact linearization based trajectory tracking controller.
 * `findPathPos.m` returns the path point which matches the current vehicle position
 * `interp1_angle.m` a custom interpolation function which applies correct arithmetics for angular interpolation between -pi and +pi
 * `local_path_matching.m` calculates the vehicle position in path coordinates and some other related useful values
-* `smoothRaceline.m` smoothes the given path based on a model based approach to minimize curvature oscillations while staying near to the current path
+* `learnSteeringCharacteristic.m` adapts the under-/oversteering characteristic based on previous data.
 
 # Basic setup
 In the following, the basic tuning process is described for all algorithms in this component. Take care that some data dictionaries have vehicle specific version. This is always named e.g. `db_xxxxxxxx.sldd`. If you change a parameter, you have to do it in the vehicle specific version. This is configured before simulation or building the model automatically by the vehicle project.
@@ -27,8 +27,6 @@ In the following, the basic tuning process is described for all algorithms in th
 The most important parameter in this algorithm is the handling of safety checks related to relative path position. `P_VDC_ActivateHighPathDeviationDetection_b` activates these checks. `P_VDC_LateralPathDeviationMax_m` describes the maximum allowed lateral path deviation and `P_VDC_HeadingPathDeviationMax_rad` the maximum allowed heading deviation. These apply during startup as well as during driving. If these criteria are not met, the vehicle either does not start driving or switches to emergency mode. They should be adjusted according to the safety distances in the planning algorithm and the track properties.
 
 If only cartesian coordinates and a velocity profile is provided to the controller, `P_VDC_LocalFFCalculationActive_b` must be set to true. This triggers local calculation of the required feedforward information about the path based on numeric derivatives.
-
-The path smoothing algorithm can be activated via `P_VDC_SmoothPathActive_b`. In general, this is not recommend and should only be used temporarly in case the trajectory planner delivers noisy results. It will alter the path significantly at some points and therefore might violate path constraints.
 
 #### Path Feedback: `xx_mvdc_path_feedback`
 This algorithm has several parameters which have to be set in a vehicle specific way and fine tuned in real world driving.

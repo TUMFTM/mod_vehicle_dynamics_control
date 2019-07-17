@@ -1,0 +1,46 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Steering angle", "in rad"],
+"ts":
+  ["debug_VehicleSensorData_Delta_Wheel_rad",
+  "debug_mvdc_curvvel_tracking_debug_Req_Delta_rad"],
+"labels":
+  ["Actual", "Target"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Powertrain"],
+"ts":
+  ["debug_VehicleSensorData_Fx_Powertrain_N",
+  "debug_VehicleSensorData_Tz_Powertrain_Nm",
+  "debug_mvdc_curvvel_tracking_debug_Req_Fx_N"],
+"labels":
+  ["Actual Fx in N", "Actual Mz in Nm",
+  "Target Fx in N"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Motor Torques","T in Nm"],
+"ts":
+  ["debug_VehicleSensorData_T_WheelFL_Nm",
+   "debug_VehicleSensorData_T_WheelFR_Nm",
+   "debug_VehicleSensorData_T_WheelRL_Nm",
+   "debug_VehicleSensorData_T_WheelRR_Nm"],
+"labels":
+  ["FL","FR","RL","RR"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Brake pressure", "p in bar"],
+"ts":
+  ["debug_VehicleSensorData_p_BrakeF_bar",
+   "debug_VehicleSensorData_p_BrakeR_bar"],
+"labels":
+  ["Front", "Rear"]
+}
+}

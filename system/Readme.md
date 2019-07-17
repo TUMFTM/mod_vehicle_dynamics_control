@@ -27,7 +27,7 @@ The vehicle unstable diagnostic can be activated via `P_MLOC_ActivateVehicleUnst
 |  0     | OFF                          | System is off (no state)
 | 10     | STARTUP_Init                 | System startup started
 | 11     | STARTUP_WaitForSystem        | Wait for CAN and hardware components
-| 11     | STARTUP_WaitForAIDriverComms | Wait for other AI driver components
+| 12     | STARTUP_WaitForAIDriverComms | Wait for other AI driver components
 | 20     | IDLE_ActivateSensorFusion    | Enable sensor fusion
 | 21     | IDLE_WaitForSensorFusion     | Wait until sensor fusion is ok
 | 22     | IDLE_ActivateDriver          | Enable trajectory driver

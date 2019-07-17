@@ -28,7 +28,15 @@ psi_rad = OdometryPosition_old.psi_rad + pi/2;
 dx = cos(psi_rad)*vx_mps - sin(psi_rad)*vy_mps; 
 dy = sin(psi_rad)*vx_mps + cos(psi_rad)*vy_mps; 
 dPsi = dPsi_rad; 
-% integrate using euler forward 
-OdometryPosition.x_m = OdometryPosition_old.x_m + dx*tS_s; 
-OdometryPosition.y_m = OdometryPosition_old.y_m + dy*tS_s; 
-OdometryPosition.psi_rad = normalizeAngle(OdometryPosition_old.psi_rad + dPsi*tS_s); 
+% integrate using heun scheme
+x_m_mid = OdometryPosition_old.x_m + dx*tS_s/2; 
+y_m_mid = OdometryPosition_old.y_m + dy*tS_s/2; 
+psi_rad_mid = normalizeAngle(OdometryPosition_old.psi_rad + dPsi*tS_s/2); 
+% calculate derivatives for second half
+dx = cos(psi_rad_mid+pi/2)*vx_mps - sin(psi_rad_mid+pi/2)*vy_mps; 
+dy = sin(psi_rad_mid+pi/2)*vx_mps + cos(psi_rad_mid+pi/2)*vy_mps; 
+dPsi = dPsi_rad; 
+% integrate using heun scheme 
+OdometryPosition.x_m = x_m_mid + dx*tS_s/2; 
+OdometryPosition.y_m = y_m_mid + dy*tS_s/2; 
+OdometryPosition.psi_rad = normalizeAngle(psi_rad_mid + dPsi*tS_s/2); 

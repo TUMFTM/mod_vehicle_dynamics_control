@@ -1,5 +1,5 @@
 % plots a basic tire model given via the vector PacParam 
-function plotTireModel(PacParam, Fz, alpha_data, F_data)
+function plotTireModel(PacParam, alpha_data, F_data)
   figure; 
   grid on; hold on; 
   if(nargin > 2)
@@ -19,4 +19,7 @@ function plotTireModel(PacParam, Fz, alpha_data, F_data)
   xlabel('Side slip angle in rad'); 
   ylabel('Tire force in N'); 
   ylim([-6000, 6000]); 
+  hold on; 
+  plot(alpha_sample, 3000*atan(35*alpha_sample)); 
+  legend('Detailed Model', 'Simple Model for Control'); 
 end

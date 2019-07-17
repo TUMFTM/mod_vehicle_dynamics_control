@@ -17,7 +17,7 @@
   "debug_mvdc_curvvel_tracking_debug_Curv_all_KappaReq_radpm",
   "debug_mvdc_state_estimation_debug_StateEstimate_kappa_radpm"],
 "labels":
-  ["Target","Virtual request","Actual"]
+  ["Target (Control)", "Virtual request","Actual"]
 },
 "plot3": {
 "posx": "1",
@@ -27,9 +27,10 @@
   ["debug_mvdc_curvvel_tracking_debug_Curv_FB_Diff_DeltaReq_rad",
    "debug_mvdc_curvvel_tracking_debug_Curv_FB_Dist_DeltaReq_rad",
    "debug_mvdc_curvvel_tracking_debug_Curv_FF_Kappa_DeltaReq_rad",
-   "debug_mvdc_curvvel_tracking_debug_CO_RequestSteeringAngle_rad"],
+   "debug_mvdc_curvvel_tracking_debug_Curv_USComp_DeltaReq_rad",
+   "debug_mvdc_curvvel_tracking_debug_Req_Delta_rad"],
 "labels":
-  ["FB Kappa Diff", "FB Request Curvature Dist", "FF",
+  ["FB Kappa Diff", "FB Request Curvature Dist", "FF", "FB Nonlin Dist",
      "Overall"]
 }
 }

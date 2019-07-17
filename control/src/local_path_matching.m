@@ -1,4 +1,4 @@
-function [PathPos, actualPathPoint, tDelta_s, PathMatchingStatus, ValidTargetPath, isTargetPathValid, KappaPrediction_radpm] = ...
+function [PathPos, actualPathPoint, tDelta_s, PathMatchingStatus, ValidTargetPath, isTargetPathValid] = ...
   local_path_matching(VehicleDynamicState, NewTargetPath, PathEstimationActive, OldValidTargetPath,...
   OldisTargetPathValid, OldPathPos, ExternalReloadTrigger, tS, P_VDC_PathMatchInterpPoints,...
   P_VDC_PowertrainForesight_s, P_VDC_CurvatureForesight_s, P_VDC_LocalFFCalculationActive_b, P_VDC_PathMatchForesight_m)
@@ -40,7 +40,6 @@ function [PathPos, actualPathPoint, tDelta_s, PathMatchingStatus, ValidTargetPat
 %   PathMatchingStatus                Health status of matching algorithm 
 %   ValidTargetPath                   Current target path 
 %   isTargetPathValid                 Valid status of current target path
-%   KappaPrediction_radpm             Estimate for the kappa time profile of the next second
 
 
 %% Setup algorithm parameters 
@@ -48,7 +47,6 @@ function [PathPos, actualPathPoint, tDelta_s, PathMatchingStatus, ValidTargetPat
 nPoints = P_VDC_PathMatchInterpPoints; 
 assert(nPoints <= 1000); 
 assert(nPoints >= 100); 
-KappaPrediction_radpm = zeros(251, 1); 
 
 %% initialize storage parameters 
 % copy old target path in case it is not changed
@@ -171,23 +169,6 @@ else
     PathMatchingStatus = TUMPathMatchingState.PM_VALID; 
   else
     PathMatchingStatus = TUMPathMatchingState.PM_ENDREACHED;
-  end
-  %% calculate kappa prediction profile 
-  sPrediction_m = zeros(251, 1); 
-  sPrediction_m(1) = PathPos.s_m;
-  KappaPrediction_radpm(1) = actualPathPoint.kappa_radpm; 
-  % calculate predictions for path variable and kappa
-  for i = 2:1:length(KappaPrediction_radpm)
-      % calculate next path variable
-     sPrediction_m(i) = double(interp1(ValidTargetPath.s_m, ValidTargetPath.v_mps, sPrediction_m(i-1), 'linear', 'extrap'))*tS + sPrediction_m(i-1); 
-     % check if prediction is still a valid path point 
-     if(sPrediction_m(i) <= max(ValidTargetPath.s_m))
-        KappaPrediction_radpm(i) = double(interp1(ValidTargetPath.s_m, ValidTargetPath.kappa_radpm, sPrediction_m(i), 'linear', 'extrap')); 
-     else
-        KappaPrediction_radpm(i) = 0; 
-        % exit loop and leave the rest of the prediction undone 
-        break
-     end
   end
 end
 end

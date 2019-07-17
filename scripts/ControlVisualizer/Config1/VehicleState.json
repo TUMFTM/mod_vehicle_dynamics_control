@@ -15,10 +15,9 @@
 "ts":
   ["debug_mloc_statemachine_debug_Hardware_Status",
   "debug_mloc_statemachine_debug_AIDriver_Status",
-  "debug_mloc_statemachine_debug_AIDriverStartup_Status",
   "debug_mloc_statemachine_debug_VehicleReady2Drive"],
 "labels":
-  ["System","AI Driver","AI Driver Startup","Vehicle Ready"]
+  ["System","AI Driver","Vehicle Ready"]
 },
 "plot3": {
 "posx": "1",

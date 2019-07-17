@@ -28,10 +28,6 @@ CP.eTraj_v_mps_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_v_mps.Data(las
 CP.eTraj_v_mps_Peak = debug.debug_mvdc_trajectory_driver_perf_ePeak_v_mps.Data(lastPoint_idx); 
 CP.eTraj_kappa_radpm_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_kappa_radpm.Data(lastPoint_idx); 
 CP.eTraj_kappa_radpm_Peak = debug.debug_mvdc_trajectory_driver_perf_ePeak_kappa_radpm.Data(lastPoint_idx); 
-CP.eControl_v_mps_RMS = debug.debug_mvdc_trajectory_driver_perf_eControlRMS_v_mps.Data(lastPoint_idx); 
-CP.eControl_v_mps_Peak = debug.debug_mvdc_trajectory_driver_perf_eControlRMS_v_mps.Data(lastPoint_idx); 
-CP.eControl_kappa_radpm_RMS = debug.debug_mvdc_trajectory_driver_perf_eControlRMS_kappa_radpm.Data(lastPoint_idx); 
-CP.eControl_kappa_radpm_Peak = debug.debug_mvdc_trajectory_driver_perf_eControlPeak_kappa_radpm.Data(lastPoint_idx); 
 
 % if the plot is requested
 if(plotActive)

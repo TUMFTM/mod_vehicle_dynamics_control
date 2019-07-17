@@ -16,10 +16,11 @@ try
     configureDD('mvdc_curvvel_tracking', vehicle); 
     configureDD('mvdc_path_feedback', vehicle);
     configureDD('mvdc_path_matching', vehicle);
+    configureDD('mvdc_exactlin_feedback', vehicle);
     % state estimation component 
-    configureDD('mvdc_KF', vehicle);
+    configureDD('mvdc_KF_PointMassJoint', vehicle);
     configureDD('mvdc_state_estimation', vehicle);
-    configureDD('mloc_estimation_postprocessing', vehicle);
+    configureDD('mvdc_estimation_preprocessing', vehicle);
 catch e
     warning(['Something went wrong during configuration of ' ...
             'vehicle dynamics control parameters']); 

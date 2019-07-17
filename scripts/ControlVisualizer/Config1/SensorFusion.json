@@ -1,0 +1,88 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Position in m"],
+"ts":
+  ["debug_VehicleSensorData_x_Loc1_m",
+   "debug_VehicleSensorData_x_Loc2_m",
+   "debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m",
+   "debug_VehicleSensorData_y_Loc1_m",
+   "debug_VehicleSensorData_y_Loc2_m",
+   "debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m"],
+"labels":
+  ["xEast Loc1","xEast Loc2", "xEast Estimate",
+  "yNorth Loc1", "yNorth Loc2", "yNorth Estimate"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Residuals in m"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_xLoc1_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_yLoc1_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_xLoc2_m",
+  "debug_mvdc_state_estimation_debug_Residuals_res_yLoc2_m"],
+"labels":
+  ["xEast Loc1","yNorth Loc1","xEast Loc2","yNorth Loc2"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Orientation in rad"],
+"ts":
+  ["debug_VehicleSensorData_psi_YawAngleLoc1_rad",
+   "debug_VehicleSensorData_psi_YawAngleLoc2_rad",
+   "debug_mvdc_state_estimation_debug_StateEstimate_Pos_psi_rad"],
+"labels":
+  ["Loc1", "Loc2", "Estimate"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Residuals in rad"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_psiLoc1_rad",
+   "debug_mvdc_state_estimation_debug_Residuals_res_psiLoc2_rad"],
+"labels":
+  ["Loc1", "Loc2"]
+},
+"plot5": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Speed in mps"],
+"ts":
+  ["debug_VehicleSensorData_vx_CoGVel1_mps",
+   "debug_VehicleSensorData_vx_CoGVel2_mps",
+   "debug_mvdc_state_estimation_debug_StateEstimate_vx_mps",
+   "debug_VehicleSensorData_vy_CoGVel1_mps",
+   "debug_VehicleSensorData_vy_CoGVel2_mps",
+   "debug_mvdc_state_estimation_debug_StateEstimate_vy_mps"],
+"labels":
+  ["vx Vel1", "vx Vel2", "vx Estimate", "vy Vel1", "vy Vel2", "vy Estimate"]
+},
+"plot6": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["Residuals in mps"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_vxVel1_mps",
+   "debug_mvdc_state_estimation_debug_Residuals_res_vyVel1_mps",
+   "debug_mvdc_state_estimation_debug_Residuals_res_vxVel2_mps",
+   "debug_mvdc_state_estimation_debug_Residuals_res_vyVel2_mps"],
+"labels":
+  ["vx Vel1", "vy Vel1", "vx Vel2", "vy Vel2"]
+},
+"plot7": {
+"posx": "2",
+"posy": "4",
+"ylabel": ["Residuals in m"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_Residuals_res_sLoc1_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_dLoc1_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_sLoc2_m",
+   "debug_mvdc_state_estimation_debug_Residuals_res_dLoc2_m"],
+"labels":
+  ["s Loc1", "d Loc1", "s Loc2", "d Loc2"]
+}
+}
