@@ -19,7 +19,6 @@
 *.lai
 *.la
 *.a
-*.lib
 # Executables
 *.exe
 *.out
@@ -43,11 +42,12 @@ sccprj/
 !/data/Readme.md
 *.mat
 
-# CLion Files 
+# CLion Files
 cmake-build-debug
 
 .idea
 
+scripts/MPCVisualizer/venv/*
 
 # ROS stuff
 *.bag

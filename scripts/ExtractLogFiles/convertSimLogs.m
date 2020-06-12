@@ -1,4 +1,4 @@
-function [debug, real_physics] = convertSimLogs(logsout, save_filename)  
+function [debug, SimRealState] = convertSimLogs(logsout, save_filename)  
 %
 %% Documentation
 % 
@@ -14,16 +14,17 @@ function [debug, real_physics] = convertSimLogs(logsout, save_filename)
 % 
 % Outputs: 
 %   debug:          debug data structure
-%   real_physics    ground truth data structure
+%   SimRealState:   ground truth data structure
     
-    disp('Start log converstion'); 
-    % get data from simulation
-    debug = struct2sims(logsout.getElement('Debug').Values, 'debug');
-    real_physics = logsout.getElement('SimRealState').Values;
+    disp('Start log conversion ...'); 
+    names = getElementNames(logsout); 
+    for i = 1:1:numElements(logsout)
+        eval([names{i} ' = struct2sims(logsout.getElement(''' names{i} ''').Values, ''' names{i} ''');']);
+    end
     % only save data to file if there is a second function argument
     if(nargin == 2) 
-        save(save_filename, 'debug'); 
+        save(save_filename, names{:}); 
     end
-    disp('Conversion successful'); 
+    disp('Conversion successful!'); 
     
 end

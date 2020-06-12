@@ -111,13 +111,13 @@ function UpdateMarker_Callback(hObject, eventdata, handles, newValue)
       % check bounds
       newValue = max(min(newValue, handles.SubsetPointer.Max), handles.SubsetPointer.Min);
       % find idx which to move marker to 
-      targetidx = find(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data ==  newValue, 1);
+      targetidx = find(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data ==  newValue, 1);
       % move marker 
-      handles.PlotMarkerLap.XData = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Time(targetidx);
-      handles.PlotMarkerLap.YData = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data(targetidx);
+      handles.PlotMarkerLap.XData = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Time(targetidx);
+      handles.PlotMarkerLap.YData = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data(targetidx);
       handles.PlotMarkerLapIdx = newValue; 
       % plot actual beginning time of lap 
-      handles.actualtimestamp_string.String = [num2str(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Time(targetidx)) ' s'];
+      handles.actualtimestamp_string.String = [num2str(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Time(targetidx)) ' s'];
       % update edit field and slider 
       handles.SubsetPointerEdit.String = newValue; 
       handles.SubsetPointer.Value = newValue; 
@@ -132,14 +132,14 @@ function UpdateMarker_Callback(hObject, eventdata, handles, newValue)
       else
         % get start and stop time of visualization 
         % take lap navigation 
-        idx_start = find((handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data == handles.PlotMarkerLapIdx), 1, 'first'); 
-        idx_end = find((handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data == handles.PlotMarkerLapIdx), 1, 'last'); 
+        idx_start = find((handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data == handles.PlotMarkerLapIdx), 1, 'first'); 
+        idx_end = find((handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data == handles.PlotMarkerLapIdx), 1, 'last'); 
         % check if only one lap is available and prevent idx_end from being out of range
-        if(idx_end > handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Length)
+        if(idx_end > handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Length)
           idx_end = idx_end - 1; 
         end
-        handles.tStart_lap = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Time(idx_start); 
-        handles.tEnd_lap = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Time(idx_end);     
+        handles.tStart_lap = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Time(idx_start); 
+        handles.tEnd_lap = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Time(idx_end);     
         [idxStart,idxEnd] = find_ts_idx(handles.debug.debug_mvdc_trajectory_driver_perf_LapTime_s,handles.tStart_lap,handles.tEnd_lap); 
         handles.laptime.String = [num2str(handles.debug.debug_mvdc_trajectory_driver_perf_LapTime_s.Data(idxEnd)) ' s']; 
       end  
@@ -165,8 +165,8 @@ if(handles.SimpleMode)
     tMinValid = handles.debug.debug_mvdc_trajectory_driver_debug_PathMatchingStatus.Time(idx_start); 
     tMaxValid = handles.debug.debug_mvdc_trajectory_driver_debug_PathMatchingStatus.Time(idx_end); 
     % create temporary timeseries which exluces non valid matched path points 
-    actualPathPoint_x_temp = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_x_m; 
-    actualPathPoint_y_temp = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_y_m; 
+    actualPathPoint_x_temp = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_x_m; 
+    actualPathPoint_y_temp = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_y_m; 
     % rework actual path point data 
     if(~isempty(tMinValid)) 
       actualPathPoint_x_temp.Data(1:(idx_start-1)) = NaN; 
@@ -177,9 +177,9 @@ if(handles.SimpleMode)
       actualPathPoint_y_temp.Data((idx_end+1):end) = NaN; 
     end
 
-      mapViewplot = xy_axes({handles.debug.debug_mvdc_path_matching_debug_LocalPos_x_m,...
+      mapViewplot = xy_axes({handles.debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m,...
             actualPathPoint_x_temp},...
-            {handles.debug.debug_mvdc_path_matching_debug_LocalPos_y_m,...
+            {handles.debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m,...
             actualPathPoint_y_temp},...
             {'Actual', 'Path'}, 'East - Coordinate in m', 'North - Coordinate in m', true, true); 
       mapViewplot.plot_all(handles.mapView, handles.tStart_simple, handles.tEnd_simple); 
@@ -193,8 +193,8 @@ else
     tMinValid = handles.debug.debug_mvdc_trajectory_driver_debug_PathMatchingStatus.Time(idx_start); 
     tMaxValid = handles.debug.debug_mvdc_trajectory_driver_debug_PathMatchingStatus.Time(idx_end); 
     % create temporary timeseries which exluces non valid matched path points 
-    actualPathPoint_x_temp = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_x_m; 
-    actualPathPoint_y_temp = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_y_m; 
+    actualPathPoint_x_temp = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_x_m; 
+    actualPathPoint_y_temp = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_y_m; 
     % rework actual path point data 
     if(~isempty(tMinValid)) 
       actualPathPoint_x_temp.Data(1:(idx_start-1)) = NaN; 
@@ -205,9 +205,9 @@ else
       actualPathPoint_y_temp.Data((idx_end+1):end) = NaN; 
     end
     % one is lap marker 
-    mapViewplot = xy_axes({handles.debug.debug_mvdc_path_matching_debug_LocalPos_x_m,...
+    mapViewplot = xy_axes({handles.debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m,...
           actualPathPoint_x_temp},...
-          {handles.debug.debug_mvdc_path_matching_debug_LocalPos_y_m,...
+          {handles.debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m,...
           actualPathPoint_y_temp},...
           {'Actual', 'Path'}, 'East - Coordinate in m', 'North - Coordinate in m', true, true); 
     mapViewplot.plot_all(handles.mapView, handles.tStart_lap, handles.tEnd_lap);
@@ -284,7 +284,7 @@ function loaddataset_Callback(hObject, eventdata, handles)
 
 % check if there are open windows (if yes, close) 
 closevisz_Callback(hObject, eventdata, handles);
-if(any(diff(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_TrajCnt.Data)~=0))
+if(any(diff(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_TrajCnt.Data)~=0))
   % check if trajectory infromation are available
   handles.SimpleMode = 0; 
   handles.fulllapmode_pb.Enable = 'On'; 
@@ -316,19 +316,19 @@ function setupMode(hObject, eventdata, handles)
   % check if target path information are available 
   if(~handles.SimpleMode)
     % setup navigation interface with lap and trajectory count 
-    LapCounterVisual = ty_axes({handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt},{'Lap number'});
+    LapCounterVisual = ty_axes({handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt},{'Lap number'});
     cla(handles.LapCounter); 
     LapCounterVisual.plot_all(handles.LapCounter);
 
     if(~isfield(handles, 'PlotMarkerLapIdx'))
-      handles.PlotMarkerLapIdx = handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data(1); 
+      handles.PlotMarkerLapIdx = handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data(1); 
     end
     hold(handles.LapCounter, 'on'); 
     if(~exist('handles.PlotMarkerLap'))
       % check if marker needs to be created 
       handles.PlotMarkerLap = plot(handles.LapCounter,...
-        handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Time(1),...
-        handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data(1),'ro', 'MarkerFaceColor', 'r');
+        handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Time(1),...
+        handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data(1),'ro', 'MarkerFaceColor', 'r');
     else
       handles.PlotMarkerLap.Visible = 'Off'; 
     end
@@ -343,17 +343,17 @@ function setupMode(hObject, eventdata, handles)
     handles.foresight_count.String ='0';
     
         % check if there is only one lap to display
-      if(max(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data)...
-          == min(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data))
+      if(max(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data)...
+          == min(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data))
         % disable slider 
         handles.SubsetPointer.Enable = 'off';
-        handles.PlotMarkerLapIdx = min(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data); 
-        handles.SubsetPointer.Min = min(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data); 
-        handles.SubsetPointer.Max = min(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data)+1; 
+        handles.PlotMarkerLapIdx = min(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data); 
+        handles.SubsetPointer.Min = min(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data); 
+        handles.SubsetPointer.Max = min(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data)+1; 
       else
         % update slider min max 
-        handles.SubsetPointer.Min = min(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data); 
-        handles.SubsetPointer.Max = max(handles.debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data); 
+        handles.SubsetPointer.Min = min(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data); 
+        handles.SubsetPointer.Max = max(handles.debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data); 
         % enable slider 
         handles.SubsetPointer.Enable = 'on';
       end

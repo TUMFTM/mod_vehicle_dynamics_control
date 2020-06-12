@@ -93,13 +93,11 @@ This is a description of the most important bus signals within the control softw
 | ----------- | ---- | --------- |--------------
 | LapCnt      | -    | uint32    | Lap counter (data logging only)
 | TrajCnt     | -    | uint32    | Trajectory counter, used to trigger loading a new Trajectory
-| delay_s     | s    | double    | Estimated delay between beginning of planning and controller receiving new trajectory. This can be used to improve initial path matching quality after a trajectory update.
-| s_m         | m    | single 50x1 vector    | Arc length parameter of path. Must be strictly monotonic increasing.
-| x_m         | m    | single 50x1 vector | East/West coordinate in global coordinates. East is positive.
-| y_m         | m    | single 50x1 vector | North/South coordinate in global coordinates. North is positive.
-| psi_rad     | rad  | single 50x1 vector | Path heading. Counter-clockwise positive, zero for north direction. Range -pi/pi
-| kappa_radpm | radpm    | single 50x1 vector | Path curvature. Left-turn positive.
-| v_mps       | mps      | single 50x1 vector | Velocity profile
-| ax_mps2     | mps2      | single 50x1 vector | Acceleration value for interval between this point and next point.
-| Delta_rad   | rad      | single 50x1 vector | Steering angle at this point. Advanced use only. Set to zero.
-| DriveForce_N| N         | single 50x1 vector | Force request at this point. Advanced use only. Set to zero.
+| s_loc_m     | m    | double 50x1 vector    | Arc length parameter of path. Must be strictly monotonic increasing.
+| s_glob_m    | m    | double 50x1 vector    | Arc length parameter of global coordinate system. Only for debugging purposes, can be left to zero. 
+| x_m         | m    | double 50x1 vector | East/West coordinate in global coordinates. East is positive.
+| y_m         | m    | double 50x1 vector | North/South coordinate in global coordinates. North is positive.
+| psi_rad     | rad  | double 50x1 vector | Path heading. Counter-clockwise positive, zero for north direction. Range -pi/pi
+| kappa_radpm | radpm    | double 50x1 vector | Path curvature. Left-turn positive.
+| v_mps       | mps      | double 50x1 vector | Velocity profile
+| ax_mps2     | mps2      | double 50x1 vector | Acceleration value for interval between this point and next point.

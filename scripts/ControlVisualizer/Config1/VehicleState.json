@@ -25,11 +25,10 @@
 "ylabel": ["Status"],
 "ts":
   ["debug_mloc_statemachine_debug_VehicleSafeStandstill",
-   "debug_mloc_diag_vehicle_debug_VehicleUnresponsive_b",
    "debug_mloc_statemachine_debug_StateEstimation_Status",
    "debug_mloc_statemachine_debug_Driver_Status"],
 "labels":
-  ["Vehicle Safe Standstill", "Vehicle unresponsive",
+  ["Vehicle Safe Standstill", 
      "State estimation","Driver status"]
 },
 "plot4": {

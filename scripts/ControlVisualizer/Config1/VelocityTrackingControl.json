@@ -13,7 +13,7 @@
 "posy": "2",
 "ylabel": ["Velocity", "v in mps"],
 "ts":
-  ["debug_mvdc_path_matching_debug_ActualPathPoint_v_mps",
+  ["debug_mvdc_path_matching_debug_ActualTrajPoint_v_mps",
   "debug_mvdc_curvvel_tracking_debug_Long_TargetSpeed_mps",
   "debug_mvdc_state_estimation_debug_StateEstimate_v_mps"],
 "labels":

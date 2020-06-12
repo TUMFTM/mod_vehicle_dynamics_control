@@ -41,12 +41,12 @@ disp(['Localization valid after ' num2str(tStart) 's']);
 % orientation, as the quality requirements in lateral are way higher than
 % in longitudinal
 
-t_vec = tStart:0.04:ground_truth.x_m.Time(end); 
-x_m_gt = resample(ground_truth.x_m, t_vec);
-y_m_gt = resample(ground_truth.y_m, t_vec);
+t_vec = tStart:0.04:ground_truth.SimRealState_x_m.Time(end); 
+x_m_gt = resample(ground_truth.SimRealState_x_m, t_vec);
+y_m_gt = resample(ground_truth.SimRealState_y_m, t_vec);
 x_m_se = resample(debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m, t_vec);
 y_m_se = resample(debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m, t_vec);
-psi_rad_gt = -1*(resample(ground_truth.psi_rad, t_vec) + pi/2);
+psi_rad_gt = -1*(resample(ground_truth.SimRealState_psi_rad, t_vec) + pi/2);
 dx = x_m_se.Data - x_m_gt.Data; 
 dy = y_m_se.Data - y_m_gt.Data; 
 p_s = zeros(length(dx), 1); 
@@ -70,22 +70,22 @@ if(compareSignals(zero_ts, d_m,...
     result = 0; 
 end
 
-if(compareSignals(ground_truth.psi_rad, debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_psi_rad,...
+if(compareSignals(ground_truth.SimRealState_psi_rad, debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_psi_rad,...
         tStart, 'Heading', PerformanceSpec.psiDevMax_rad, true, visualize) == 0)
     result = 0; 
 end
 
-if(compareSignals(ground_truth.vx_mps, debug.debug_mvdc_state_estimation_debug_StateEstimate_vx_mps,...
+if(compareSignals(ground_truth.SimRealState_vx_mps, debug.debug_mvdc_state_estimation_debug_StateEstimate_vx_mps,...
         tStart, 'Longitudinal velocity', PerformanceSpec.vxDevMax_mps, false, visualize) == 0)
     result = 0; 
 end
 
-if(compareSignals(ground_truth.vy_mps, debug.debug_mvdc_state_estimation_debug_StateEstimate_vy_mps,...
+if(compareSignals(ground_truth.SimRealState_vy_mps, debug.debug_mvdc_state_estimation_debug_StateEstimate_vy_mps,...
         tStart, 'Lateral velocity', PerformanceSpec.vyDevMax_mps, false, visualize) == 0)
     result = 0; 
 end
 
-if(compareSignals(ground_truth.dPsi_radps, debug.debug_mvdc_state_estimation_debug_StateEstimate_dPsi_radps,...
+if(compareSignals(ground_truth.SimRealState_dPsi_radps, debug.debug_mvdc_state_estimation_debug_StateEstimate_dPsi_radps,...
         tStart, 'Yaw rate', PerformanceSpec.dPsiDevMax_radps, false, visualize) == 0)
     result = 0; 
 end

@@ -12,7 +12,7 @@ function [nLaps, CP] = analyzeTrackingPerformance(debug, plotActive, leaveOutFir
 % CP: structure with all rms and peak control errors 
 
 % find index of last data points in the lap 
-deltaLapCnt = diff(debug.debug_mvdc_path_matching_debug_ActualPathPoint_LapCnt.Data); 
+deltaLapCnt = diff(debug.debug_mvdc_path_matching_debug_ActualTrajPoint_LapCnt.Data); 
 lastPoint_idx_raw = find(deltaLapCnt); 
 % cut of first point
 lastPoint_idx = lastPoint_idx_raw(2:end);

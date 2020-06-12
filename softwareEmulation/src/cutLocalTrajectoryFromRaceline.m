@@ -1,5 +1,5 @@
-function [LapCnt, TrajCnt, delay_s, s_m, x_m, y_m, psi_rad, kappa_radpm, v_mps, ax_mps2, Delta_rad, DriveForce_N] =...
-  cutLocalTrajectoryFromRaceline(sendMessages, ActualPos, ValidPointCnt, x_m_rl, y_m_rl, psi_rad_rl, kappa_radpm_rl, v_mps_rl, ax_mps2_rl, Delta_rad_rl, DriveForce_N_rl)
+function [LapCnt, TrajCnt, s_loc_m, s_glob_m, x_m, y_m, psi_rad, kappa_radpm, v_mps, ax_mps2] =...
+  cutLocalTrajectoryFromRaceline(sendMessages, ActualPos, ValidPointCnt, s_m_rl, x_m_rl, y_m_rl, psi_rad_rl, kappa_radpm_rl, v_mps_rl, ax_mps2_rl)
 % Main Task: 
 %   gets local trajectory pieces from a global raceline depending on the actual vehicle
 %   position. Can be used to simulate a trajectory planner with a fixed raceline. 
@@ -15,27 +15,22 @@ function [LapCnt, TrajCnt, delay_s, s_m, x_m, y_m, psi_rad, kappa_radpm, v_mps, 
 %   kappa_radpm_rl:   Raceline - Curvature vector
 %   v_mps_rl:         Raceline - Velocity vector
 %   ax_mps2_rl:       Raceline - Long. acceleration vector
-%   Delta_rad_rl:     Raceline - Steering angle vector
-%   DriveForce_N_rl:  Raceline - Driveforce vector
 % 
 % Outputs: 
 %   LapCnt:           current lap number
 %   TrajCnt:          current local trajectory number
-%   delay_s:          estimated trajectory transmission delay
+%   s_loc_m           Local trajectory - Local path coordinate
+%   s_glob_m:         Local trajectory - Global path coordinate
 %   x_m:              Local trajectory - East coordinate vector
 %   y_m:              Local trajectory - North coordinate vector
 %   psi_rad:          Local trajectory - Orientation vector
 %   kappa_radpm:      Local trajectory - Curvature vector
 %   v_mps:            Local trajectory - Velocity vector
 %   ax_mps2:          Local trajectory - Long. acceleration vector
-%   Delta_rad:        Local trajectory - Steering angle vector
-%   DriveForce_N:     Local trajectory - Driveforce vector
 % 
 % Parameters: 
-idxDiff_Reset = 200;          % if the minimum distance index is decreased by this number of elements,
+idxDiff_Reset = 10;           % if the minimum distance index is decreased by this number of elements,
                               % the algorithm assumes that a new lap has started 
-assumedVirtualDelay = 0.08;   % the simulated delay until the trajectory planner returns a trajectory 
-                              % to the control system
 nTrajPoints = 50;             % number of points per trajectory 
 nLookbackPoints = 1;          % number of lookback points from the closest point on the raceline
 
@@ -91,27 +86,23 @@ if(sendMessages)
   psi_rad = psi_rad_rl(local_path_idx); 
   kappa_radpm = kappa_radpm_rl(local_path_idx);
   v_mps = v_mps_rl(local_path_idx);
-  ax_mps2 = ax_mps2_rl(local_path_idx);  
-  Delta_rad = Delta_rad_rl(local_path_idx);
-  DriveForce_N = DriveForce_N_rl(local_path_idx);  
-  delay_s = assumedVirtualDelay; 
+  ax_mps2 = ax_mps2_rl(local_path_idx);   
+  s_glob_m = s_m_rl(local_path_idx); 
   % generate the corresponding arc length vector 
-  s_m = zeros(nTrajPoints, 1); 
+  s_loc_m = zeros(nTrajPoints, 1); 
   for i = 2:1:nTrajPoints
-    s_m(i) = sqrt((x_m(i) - x_m(i-1)).^2 + (y_m(i) - y_m(i-1)).^2) + s_m(i-1);
+    s_loc_m(i) = sqrt((x_m(i) - x_m(i-1)).^2 + (y_m(i) - y_m(i-1)).^2) + s_loc_m(i-1);
   end
 else
   % output a zero trajectory as long as the component is not considered active
   LapCnt = 0; 
   TrajCnt = 0;
-  s_m = zeros(nTrajPoints, 1);
+  s_loc_m = zeros(nTrajPoints, 1);
+  s_glob_m = zeros(nTrajPoints, 1);
   x_m = zeros(nTrajPoints, 1);
   y_m = zeros(nTrajPoints, 1);
   psi_rad = zeros(nTrajPoints, 1); 
   kappa_radpm = zeros(nTrajPoints, 1);
   v_mps = zeros(nTrajPoints, 1);
   ax_mps2 = zeros(nTrajPoints, 1);
-  Delta_rad = zeros(nTrajPoints, 1);
-  DriveForce_N = zeros(nTrajPoints, 1);
-  delay_s = 0; 
 end

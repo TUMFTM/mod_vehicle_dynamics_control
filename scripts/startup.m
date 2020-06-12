@@ -12,13 +12,31 @@
 project = simulinkproject;
 projectRoot = project.RootFolder;
 
+% store current path 
+currentPath = pwd; 
+% switch to project root
+cd(projectRoot); 
+
 try
-  % check if build folder exists and clean it up
-  if(exist([projectRoot '/build'], 'dir'))
-    rmdir([projectRoot '/build'], 's'); 
+  % cleanup build folder
+  dinfo = dir('build'); 
+  type = {dinfo.isdir}; 
+  name = {dinfo.name}; 
+  if(length(type) > 2)
+      cd('build'); 
+      for i = 3:1:length(type)
+          if type{i} == 1
+              rmdir(name{i}, 's'); 
+          else
+              % skip readme
+              if(strcmp(name{i}, 'Readme.md'))
+                  continue; 
+              end
+              delete(name{i}); 
+          end
+      end
   end
-  % create an empty build directory 
-  mkdir([projectRoot '/build']); 
+  cd('..'); 
   disp('Build folder setup done.'); 
 catch e
     disp('Exception: ');
@@ -39,6 +57,7 @@ catch e
     disp(getReport(e))
   error('Parameter setup failed.'); 
 end
+
 myCacheFolder = fullfile(projectRoot, 'build');
 myCodeFolder = fullfile(projectRoot, 'build');
 
@@ -47,3 +66,5 @@ Simulink.fileGenControl('set',...
     'CodeGenFolder', myCodeFolder,...
     'createDir', true)
   
+% go back to original path 
+cd(currentPath); 
