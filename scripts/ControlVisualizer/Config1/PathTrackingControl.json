@@ -2,52 +2,51 @@
 "plot1": {
 "posx": "1",
 "posy": "1",
-"ylabel": ["Barriers Distance in m", "to CoG"],
-"ts":
-  ["debug_mvdc_path_feedback_debug_LeftDistance_m",
-   "debug_mvdc_path_feedback_debug_RightDistance_m"],
-"labels":
-  ["Left", "Right"]
-},
-"plot2": {
-"posx": "2",
-"posy": "1",
 "ylabel": ["Lateral Path", "Error in m"],
 "ts":
   ["debug_mvdc_path_feedback_debug_Lat_LatPosError_m"],
 "labels":
   ["d"]
 },
-"plot3": {
+"plot2": {
 "posx": "1",
 "posy": "2",
 "ylabel": ["Orientation Path", "Psi in rad"],
 "ts":
-  ["debug_mvdc_path_matching_debug_ActualPathPoint_psi_rad",
+  ["debug_mvdc_path_matching_debug_ActualTrajPoint_psi_rad",
   "debug_mvdc_state_estimation_debug_StateEstimate_Pos_psi_rad",
   "debug_mvdc_state_estimation_debug_StateEstimate_psi_vel_rad"],
 "labels":
   ["Target Velocity Heading", "Actual Vehicle Heading",
   "Actual Velocity Heading"]
 },
-"plot4": {
-"posx": "2",
-"posy": "2",
-"ylabel": ["Lateral Path","Error Derivative in mps"],
-"ts":
-  ["debug_mvdc_path_feedback_debug_Lat_LatPosError_DerAna_mps",
-  "debug_mvdc_path_feedback_debug_Lat_LatPosError_DerNum_mps"],
-"labels":
-  ["Analytical", "Numerical"]
-},
-"plot5": {
+"plot3": {
 "posx": "1",
 "posy": "3",
+"ylabel": ["Lateral Path","Error Derivative in mps"],
+"ts":
+  ["debug_mvdc_path_feedback_debug_Lat_LatPosError_DerNum_mps",
+  "debug_mvdc_path_feedback_debug_Lat_LatPosError_DerAna_mps"],
+"labels":
+  ["Numerical", "Analytical"]
+},
+"plot4": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Lateral Path","Error 2. Derivative in mps2"],
+"ts":
+  ["debug_mvdc_path_feedback_debug_Lat_LatPosError_DerDerNum_mps2",
+  "debug_mvdc_path_feedback_debug_Lat_LatPosError_DerDerAna_mps2"],
+"labels":
+  ["Numerical", "Analytical"]
+},
+"plot5": {
+"posx": "2",
+"posy": "2",
 "ylabel": ["Control Request"],
 "ts":
   ["debug_mvdc_path_feedback_debug_Lat_FB_Position",
-   "debug_mvdc_path_feedback_debug_Lat_FB_Heading",
-   "debug_mvdc_path_feedback_debug_Lat_FB_Barriers"],
+   "debug_mvdc_path_feedback_debug_Lat_FB_Heading"],
 "labels":
   ["Lateral error", "Orientation Error", "Barriers"]
 },
@@ -56,10 +55,9 @@
 "posy": "3",
 "ylabel": ["Curvature request", "Kappa in radpm"],
 "ts":
-  ["debug_mvdc_path_feedback_debug_Lat_FF_Kappa_KappaReq_radpm",
-    "debug_mvdc_path_feedback_debug_Lat_FB_Sum_KappaReq_radpm",
+  [ "debug_mvdc_path_feedback_debug_Lat_FB_Sum_KappaReq_radpm",
     "debug_mvdc_path_feedback_debug_Lat_all_KappaReq_radpm"],
 "labels":
-  ["Feedforward","Feedback","Overall"]
+  ["Feedback","Overall"]
 }
 }

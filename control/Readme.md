@@ -7,7 +7,6 @@ Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
 * `mvdc_trajectory_driver.slx` is the main model of this package and is therefore a good starting point to dive deeper into the package. It combines the different subcomponents to a single function used by the software.
 * `mvdc_curvvel_tracking.slx` collects the curvature and velocity control algorithms. Both utilize proportional feedback and a disturbance observer to add integral effect (optional) to control the low level vehicle dynamics. Furthermore, handling of stillstand situations (controller settings).
 * `mvdc_path_feedback.slx` is the standard lateral feedback controller. It is based on a point-mass assumption and does not alter the speed profile. It does not respect the physical limits of the vehicle directly.
-* `mvdc_exactlin_feedback` is an alternative tracking controller which combines path tracking and vehicle dynamics control into a single design.
 * `mvdc_path_matching.slx` handles the path interface to the trajectory planner and provides the vehicle position in path coordinates (lateral distance and heading angle).
 
 # Source
@@ -15,7 +14,6 @@ Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
 * `calcPathHeading.m` calculates the path heading values corresponding to the given points for the feedforward control as an alternative to the provided one.
 * `calcPathCurvature.m` calculates the acceleration values corresponding to the given path for the feedforward control as an alternative to the provided one.
 * `exactlin_feedback.m` implements the nonlinear exact linearization based trajectory tracking controller.
-* `findPathPos.m` returns the path point which matches the current vehicle position
 * `interp1_angle.m` a custom interpolation function which applies correct arithmetics for angular interpolation between -pi and +pi
 * `local_path_matching.m` calculates the vehicle position in path coordinates and some other related useful values
 * `learnSteeringCharacteristic.m` adapts the under-/oversteering characteristic based on previous data.

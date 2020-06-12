@@ -14,9 +14,14 @@ try
     Simulink.data.dictionary.open('modelconfig.sldd');
     ConfigurationsDD = getSection(modelConfigDD,'Configurations');
     buildConfigEntry = getEntry(ConfigurationsDD,'Active');
-    newConfigEntry = getEntry(ConfigurationsDD,config);
+    newConfigEntry = getEntry(ConfigurationsDD, config);
     newConfig = getValue(newConfigEntry); 
     newConfig.Name = 'Active'; 
+    setValue(buildConfigEntry, newConfig);
+    buildConfigEntry = getEntry(ConfigurationsDD, 'Active_Multiple');
+    newConfigEntry = getEntry(ConfigurationsDD, [config '_Multiple']);
+    newConfig = getValue(newConfigEntry); 
+    newConfig.Name = 'Active_Multiple'; 
     setValue(buildConfigEntry, newConfig);
     % reconfigure sample rate 
     DesignDD = getSection(modelConfigDD,'Design Data');

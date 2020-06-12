@@ -6,13 +6,13 @@ This software component covers the trajectory tracking, state estimation and veh
 
 ![Control Architecture](control_architecture.png)
 
-A video of the performance at the Monteblanco track can be found [here](https://www.youtube.com/watch?v=-vqQBuTQhQw). Current updates on the project status and a list of related scientific publications are available [here](https://www.ftm.mw.tum.de/en/main-research/vehicle-dynamics-and-control-systems/roborace-autonomous-motorsport/).
+A video of the performance at the Monteblanco track can be found [here](https://www.youtube.com/watch?v=-vqQBuTQhQw). Current updates on the project status and a list of related scientific publications are available [here](https://www.ftm.mw.tum.de/en/main-research/vehicle-dynamics-and-control-systems/roborace-autonomous-motorsport/). If you find this repository useful and base your work upon it, please cite [Minimum curvature trajectory planning and control for an autonomous race car](https://www.tandfonline.com/doi/abs/10.1080/00423114.2019.1631455).
 
 ### Disclaimer
-Autonomous Driving is a highly complex and dangerous task. In case you plan to use this software on a vehicle, it is by all means required that you assess the overall safety concept of your project as a whole. Do not purely rely on any mechanism provided in this software package. See the license for more details.
+This software is provided *as-is* and has not been subject to a certified safety validation. Autonomous Driving is a highly complex and dangerous task. In case you plan to use this software on a vehicle, it is by all means required that you assess the overall safety of your project as a whole. By no means is this software a replacement for a valid safety-concept. See the license for more details.
 
 ### People Involved
-##### Core Developers
+##### Core Developer
 * [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de) (Control, State Estimation, System Components)
 
 ##### Acknowledgements
@@ -22,19 +22,23 @@ Several students contributed to the success of the project during their Bachelor
 * Johannes Schwarz (Control)
 * Madeline Wolz (State Estimation)
 
+The examples for a Vehicle ECU software and a Hardware-in-the-Loop simulation setup have been developed in close collaboration with Speedgoat GmbH. We want especially to acknowledge the work done by
+* Timo Strässle
+
 ### List of software component in this repository
-* `CI`: functionality related to continous integration jobs. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)  
-* `control`: everything that actuates the low level vehicle behavior and therefore acts as a control system, especially curvature, velocity and lateral tracking controller. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)  
-* `estimation`: Vehicle dynamics sensor fusion and fusion of different localization pipelines. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `example_vehicle`: Example implementation of the software for a passenger vehicle. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `interfaces`: Contains interpackage interface definitions. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `main`: Contains the main module model which collects all subcomponents. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `misc`: Several small functions, e.g. transformations. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `network`: Interfaces to other system components, e.g. via CAN or ethernet. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `scripts`: A collection of useful scripts for operating this module. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `softwareEmulation`: Replacments used for simulation purposes of the more complex planning parts in the full software stack. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `system`: Vehicle diagnosis, system startup and state machine logic. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
-* `tracks`: Example tracks for controller development. Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
+* `CI`: functionality related to continuous integration jobs.
+* `control`: everything that actuates the low level vehicle behavior and therefore acts as a control system, especially curvature, velocity and lateral tracking controller.
+* `estimation`: Vehicle dynamics sensor fusion and fusion of different localization pipelines.
+* `example_vehicle`: Example implementation of the software for a passenger vehicle.
+* `friction`: Friction estimation and tire analysis.
+* `interfaces`: Contains interpackage interface definitions.
+* `main`: Contains the main module model which collects all subcomponents.
+* `misc`: Several small functions, e.g. transformations.
+* `network`: Interfaces to other system components, e.g. via CAN or ethernet.
+* `scripts`: A collection of useful scripts for operating this module.
+* `softwareEmulation`: Replacements used for simulation purposes of the more complex planning parts in the full software stack.
+* `system`: Vehicle diagnosis, system startup and state machine logic.
+* `tracks`: Example tracks for controller development.
 
 # Installation
 This is a brief tutorial how to setup your computer to work on the controller software.
@@ -53,11 +57,34 @@ This is a brief tutorial how to setup your computer to work on the controller so
 ### Comments on software development infrastructure
 Due to the requirement, to manage multiple vehicle with the same code, we use Data Dictionaries and Simulink Project extensively. You can find information on [Simulink Project](https://de.mathworks.com/products/simulink/projects.html) and [Data Dictionaries](https://de.mathworks.com/help/simulink/ug/what-is-a-data-dictionary.html) in the Mathworks Simulink Documentation. As long as you do not plan to restructure the repositories or add multiple vehicles, it is not necessary to dive very deep into these topics. There are high level functions available to help you with software configuration (see Working with the Software Stack section).
 
-
 # Working with the Software Stack
-### Start Simulation
+### Getting started with the simulation enviroment
+The repository provides multiple examples to get you started. The first runs on a Desktop computer based and simulates the control software, a vehicle model and a low-fidelity emulation of the trajectory planning software. It can be found under `/example_vehicle/tests/controller_dev/`. A similar framework is available for testing upon a Speedgoat Real-Time Computer. `/example_vehicle/tests/controller_dev_sg/` has two variants of this: One is a loop-back simulation which can be deployed on a single real-time computer with CAN and Ethernet connected as a loop-back. The second aims at deploying the control software and the physics simulation on separate real-time computer and forms a standard Hardware-in-the-Loop setup.
+
+##### Desktop simulation
 * Open the main project `modules/mod_vehicle_dynamics_control/Mod_vehicle_dynamics_control.prj`
-* Open the model `modules/mod_vehicle_dynamics_control/example_vehicle/tests/controller_dev/controller_dev.slx` in Simulink and run it via the *Run* button. 
+* Open the model `modules/mod_vehicle_dynamics_control/example_vehicle/tests/controller_dev/controller_dev.slx` in Simulink and run it via the *Run* button.
+
+##### Loop-back simulation
+* 1 Speedgoat Real-Time Target Machine required
+* Open the main project `modules/mod_vehicle_dynamics_control/Mod_vehicle_dynamics_control.prj`
+* Configure the project for Speedgoat deployment using `configureSimBuildModelConfig('Speedgoat');` and `configureVDCBuildModelConfig('Speedgoat');`
+* Open the model `modules/mod_vehicle_dynamics_control/example_vehicle/tests/controller_dev_sg/controller_dev_sg.slx` in Simulink and build it via the *Build* button. Now you are ready to load the software on your speedgoat hardware.
+* Connect CAN and Ethernet loopbacks to the corresponding interfaces and run the speedgoat model from the MATLAB command line.
+
+##### Hardware-in-the-Loop simulation
+* 2 Speedgoat Real-Time Target Machines required
+* Open the main project `modules/mod_vehicle_dynamics_control/Mod_vehicle_dynamics_control.prj`
+* Configure the project for Speedgoat deployment using `configureSimBuildModelConfig('Speedgoat');` and `configureVDCBuildModelConfig('Speedgoat');`
+* Open the model `modules/mod_vehicle_dynamics_control/example_vehicle/tests/controller_dev_sg/controller_dev_sg_RCP.slx` in Simulink, build it via the *Build* button and load it onto the real-time computer which is your ECU.
+* Open the model `modules/mod_vehicle_dynamics_control/example_vehicle/tests/controller_dev_sg/controller_dev_sg_HIL.slx` in Simulink, build it via the *Build* button and load it onto the real-time computer which is your physics simulation.
+* Connect CAN and Ethernet to the corresponding interfaces and run both speedgoat model from the MATLAB command line.
+
+##### Choice of vehicle dynamics model
+All the above variants can be used with one of three different vehicle dynamic models. They are chosen based on the parameter `P_PassengerVehicleSimModel` located in `example_vehicle/datadict/PassengerVehicle.sldd`. Details on the variants are available in the documentation of the `sim_vehicle_dynamics` repository. The parameter can be set as follows:
+* Nonlinear single track model (recommended for basic development tasks, low computation times) `P_PassengerVehicleSimModel = 1`
+* Customized nonlinear dual track model for racing applications based on the Mathworks [Vehicle Dynamics Blockset](https://de.mathworks.com/products/vehicle-dynamics.html) `P_PassengerVehicleSimModel = 2`
+* Standard nonlinear dual track model from the examples of the Mathworks [Vehicle Dynamics Blockset](https://de.mathworks.com/products/vehicle-dynamics.html) `P_PassengerVehicleSimModel = 3`
 
 ### Use Different Tracks
 ##### Load a racetrack
@@ -66,7 +93,7 @@ The racelines available for simulation can be found under `tracks`. Each data di
 
 ##### Create new racetracks
 Racetracks can be imported via .csv files using `scripts/CreateNewTrack.m`. The format specification can be found in the function documentation of the file. An example is provided in `tracks/TrackCreationExample.csv`. Run the script to create a new track definition in the tracks folder. This can be imported via loadScenario afterwards.
-* Call `CreateNewTrack('<csvfile>', 1)` to import the csv and create a racetrack
+* Call `CreateNewTrack('<csvfile>', 3)` to import the csv and create a racetrack
 
 ### Data Inspection
 ##### Create debug logs
@@ -78,7 +105,7 @@ Racetracks can be imported via .csv files using `scripts/CreateNewTrack.m`. The 
 The software stack provides a MATLAB GUI for basic visualization of all important data for the algorithms. It can be started by running `trajectorycontrolvisualizer` from the MATLAB command line. A general introduction to the usage of the tool can be found in `scripts/ControlVisualizer/Readme.md`. Details on the signal meanings are documented in the models.
 
 # Adapt the Software Stack to your vehicle
-In the following, you find a guide how to modify the example vehicle such that it corresponds to your own vehicle. The software is currently in use with Speedgoat hardware in the project, however it should be straight-forward to use it on other targets which support a Simulink Toolchain. The guide covers the functional changes necessary and gives a starting point which signals have to be used.
+In the following, you find a guide how to modify the example vehicle such that it corresponds to your own vehicle. The software is currently in use with Speedgoat hardware in the project, however it should be straight-forward to use it on other targets which support a Simulink Toolchain. The guide covers the functional changes necessary and gives a starting point which signals have to be used. The software stack is run by the Roborace Team of the TUM in an autonomous racing car. It aims at being developed independent from the specific use -case, however, development focus is high-performance driving. Therefore, some changes might be required depending on your vehicle configuration.
 
 In general, it is recommended to modify the example vehicle. The only case where it is necessary to add a new vehicle is if you have to maintain multiple vehicle configurations or want to contribute to the upstream development. Please have in mind, that every vehicle has a two character identifier, which is used extensively throughout the project. In the case of this example vehicle it is `pa`. You will find this in front of many file names in this tutorials. All of these files are vehicle specific and may be subject to reconfiguration in a multiple vehicle setup.
 
@@ -88,6 +115,13 @@ The workflow to adapt the software to your vehicle has three steps:
 1. Adjust vehicle parameters for simulation and control software
 2. Tune controllers to fit your needs in the simulation
 3. Add vehicle specific interfaces to the target software
+
+### General advice on setting up a prototype with this software stack (Hardware & Interfaces)
+The main software interfaces are the trajectory planner and the vehicle actuators. In the Robrace project we based the former on an Ethernet link, the latter is using a Controller Area Network (CAN) interface. The hardware implementation of those interfaces may change depending on your prototype. However, all signals are expected to come at a fast update rate (~100Hz) for all low-level sensors and a moderate update rate (~10-20Hz) for localization sources. Slower sample rates could cause performance degradation. Trajectory updates are required also at an moderate update rate (~10-20Hz). Another point to be stressed is that the controller design requires high-quality derivative information for the target trajectory. It performs safety checks on those signals and they are used directly in the controller. Noisy derivatives can significantly degrade performance and even affect vehicle stability. Note that the controller requires two distinct trajectories, the performance trajectory (standard) as well as the emergency trajectory. The latter is required to always come to a full-stop and provide a backup in case of network failure or a fault in the planning software.  
+
+Depending on the vehicle configuration, the actuator interface might differ significantly. As the controller requests a longitudinal force, it is required to map that to the corresponding actuator requests (e.g. combustion engine, electric motor(s) or hydraulic brakes) to achieve the requested value. Please note that the software expects the request to be conducted without delay. Especially for combustion engines, this might not be true and require additional modifications. Experience has shown that the lateral control performance depends heavily on the steering actuator response. Again, the controller does not compensate for response delay or low-pass characteristics. We have seen good performance when the requested steering angle is tracked with a low-pass time-constant of roughly 50ms. In case your hardware does not match these requirements, modifications in the lateral controller design might be necessarry.
+
+From a sensors perspective, the minimum requirement is one IMU sensor (providing at least longitudinal and lateral acceleration and yaw rate) and one localization measurement. Furthermore, using wheel speed sensors is strongly recommended, even though they are mainly used for anti-wheel-lock control. Adding a velocity sensor is optional, as the required information can be estimated based upon localization measurements and IMU signals. The software provides inputs for two localization measurements, two velocity measurements and two IMU measurements. Automatic failure detection is performed for the velocity measurements, however, online reconfiguration for all six sensors is possible (maintaining the minimum configuration mentioned above). This allows you to feed additional diagnostics and quality information into the sensor fusion.
 
 ### Adjust the vehicle parameters
 The vehicle parameters are located in two different sources. The reason for this is that it should be possible to simulate parameter mismatch between the model and the software by applying different vehicle parameter for the simulation model than in the software.

@@ -41,21 +41,21 @@ if(tFailuredDetected_s <= 0 && tFailuredDetected_s >= PerformanceSpec.tDetection
     return
 end
 % find point where failure was detected 
-idxDetect_gt = find(ground_truth.ax_mps2.Time > tFailuredDetected_s, 1); 
+idxDetect_gt = find(ground_truth.SimRealState_ax_mps2.Time > tFailuredDetected_s, 1); 
 % find timestamp where velocity has gone to new stopped 
 % for very low velocites, the stop controller does not behave precisly in
 % sim, therefore its tested against roughly 5kph. 
-idxStop = find(ground_truth.vx_mps.Data(idxDetect_gt:end) < 2, 1) + idxDetect_gt; 
+idxStop = find(ground_truth.SimRealState_vx_mps.Data(idxDetect_gt:end) < 2, 1) + idxDetect_gt; 
 if isempty(idxStop)
     disp('The vehicle did not stop.'); 
     result = 0; 
     return
 else
-    tStop_s = ground_truth.vx_mps.Time(idxStop); 
+    tStop_s = ground_truth.SimRealState_vx_mps.Time(idxStop); 
     disp(['The vehicle took ' num2str(tStop_s - tFailure_s) ' s to stop.']); 
 end
 % check if control performance was ok 
-meanAccX = mean(ground_truth.ax_mps2.Data(idxDetect_gt:idxStop));
+meanAccX = mean(ground_truth.SimRealState_ax_mps2.Data(idxDetect_gt:idxStop));
 disp(['The mean longitudinal accleeration was: ' num2str(meanAccX)]); 
 if(meanAccX > PerformanceSpec.AccxMin_mps2)
     disp('The vehicle did not stay within the specified deceleration bounds.'); 

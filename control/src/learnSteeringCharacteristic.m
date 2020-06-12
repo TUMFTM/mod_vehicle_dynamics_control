@@ -99,5 +99,11 @@ function K = kernel(X, Y, length_scales)
     for i = 1:1:nY(1)
         Y_s(i, :) = Y(i, :)./length_scales; 
     end
-    K = 0.05.^2.*exp(-0.5*pdist2(X_s, Y_s)); 
+    % compute kernel matrix
+    K = zeros(nX(1), nY(1)); 
+    for i = 1:1:nX(1)
+        for j = 1:1:nY(1)
+            K(i, j) = 0.05.^2.*exp(-0.5*sum((X_s(i, :)-Y_s(j, :)).^2)); 
+        end
+    end
 end

@@ -5,7 +5,6 @@ Contact person: [Alexander Wischnewski](mailto:alexander.wischnewski@tum.de)
 
 # Models
 * `TrajectoryPlanningEmulation.slx` implements a basic emulation of the trajectory generation and the interface to the control software.
-* `TrajectoryScalingEmulation.slx` implements a basic emulation velocity and speed scaling applied by the trajectoryplanner and the interface to the control software.
 * `LidarLocalizationEmulation.slx` implements a basic emulation of the LIDAR localization and the interface to the control software.
 * `trajectoryReplay.slx` allows to simulate an opponent following a prescribed trajectory
 
