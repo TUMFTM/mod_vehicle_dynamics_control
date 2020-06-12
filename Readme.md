@@ -6,7 +6,7 @@ This software component covers the trajectory tracking, state estimation and veh
 
 ![Control Architecture](control_architecture.png)
 
-A video of the performance at the Monteblanco track can be found [here](https://www.youtube.com/watch?v=-vqQBuTQhQw). Current updates on the project status and a list of related scientific publications are available [here](https://www.ftm.mw.tum.de/en/main-research/vehicle-dynamics-and-control-systems/roborace-autonomous-motorsport/). If you find this repository useful and base your work upon it, please cite [Minimum curvature trajectory planning and control for an autonomous race car](https://www.tandfonline.com/doi/abs/10.1080/00423114.2019.1631455). 
+A video of the performance at the Monteblanco track can be found [here](https://www.youtube.com/watch?v=-vqQBuTQhQw). Current updates on the project status and a list of related scientific publications are available [here](https://www.ftm.mw.tum.de/en/main-research/vehicle-dynamics-and-control-systems/roborace-autonomous-motorsport/). If you find this repository useful and base your work upon it, please cite [Minimum curvature trajectory planning and control for an autonomous race car](https://www.tandfonline.com/doi/abs/10.1080/00423114.2019.1631455).
 
 ### Disclaimer
 This software is provided *as-is* and has not been subject to a certified safety validation. Autonomous Driving is a highly complex and dangerous task. In case you plan to use this software on a vehicle, it is by all means required that you assess the overall safety of your project as a whole. By no means is this software a replacement for a valid safety-concept. See the license for more details.
@@ -22,7 +22,7 @@ Several students contributed to the success of the project during their Bachelor
 * Johannes Schwarz (Control)
 * Madeline Wolz (State Estimation)
 
-The examples for a Vehicle ECU software and a Hardware-in-the-Loop simulation setup has been developed in close collaboration with Speedgoat GmbH. We want especially to acknowledge the work done by
+The examples for a Vehicle ECU software and a Hardware-in-the-Loop simulation setup have been developed in close collaboration with Speedgoat GmbH. We want especially to acknowledge the work done by
 * Timo Strässle
 
 ### List of software component in this repository
