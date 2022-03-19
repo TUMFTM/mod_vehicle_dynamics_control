@@ -1,0 +1,38 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Curvature error", "in radpm"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_Curv_CurvError_radpm"],
+"labels":
+  ["Curvature error"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Curvature", "Kappa in radpm"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_Curv_TargetCurv_radpm",
+  "debug_mvdc_curvvel_tracking_debug_Curv_MaxCurv_radpm",
+  "debug_mvdc_curvvel_tracking_debug_Curv_MinCurv_radpm",
+  "debug_mvdc_curvvel_tracking_debug_Curv_all_KappaReq_radpm",
+  "debug_mvdc_curvvel_tracking_debug_Curv_CurvEstimate_radpm"],
+"labels":
+  ["Target","Max","Min","Virtual request","Actual"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Control output", "Delta in rad"],
+"ts":
+  ["debug_mvdc_curvvel_tracking_debug_Curv_FB_Diff_DeltaReq_rad",
+   "debug_mvdc_curvvel_tracking_debug_Curv_FB_Dist_DeltaReq_rad",
+   "debug_mvdc_curvvel_tracking_debug_Curv_FF_Kappa_DeltaReq_rad",
+   "debug_mvdc_curvvel_tracking_debug_Curv_Damping_DeltaReq_rad",
+   "debug_mvdc_curvvel_tracking_debug_Curv_all_DeltaReq_rad"],
+"labels":
+  ["FB Kappa Diff", "FB Request Curvature Dist", "FF",
+     "Delta Damping","Overall"]
+}
+}

@@ -1,0 +1,75 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Lateral Acc", "in mps2"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_VirtualAccTarget_mps2",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_Target_mps2",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_bank_mps2"],
+"labels":
+  ["Actual", "Virtual Target", "Target", "Bank comp."]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Steering request", "in rad"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_LatAcc_FFss_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FFdyn_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FB_ay_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FB_Dist_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FB_Delta_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FFLearned_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_FBStabilizer_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_Control_rad"],
+"labels":
+  ["FF Steady State", "FF Dynamic", "FB ay", "FB Dist", "FB Delta", "FF Learned", "FB Stabilizer","Overall"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Steering", "in rad"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_DeltaWheel_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_Control_rad",
+  "debug_mvdc_tmpc_fast_debug_LatAcc_VirtualSteeringTarget_rad"],
+"labels":
+  ["Actual", "Request", "Target"]
+},
+"plot4": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Long Acc", "in mps2"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_ax_mps2",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_Target_mps2",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_TargetFF_mps2"],
+"labels":
+  ["Actual", "Target", "Target FF"]
+},
+"plot5": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Force request", "in N"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_LongAcc_FFax_N",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_FFdist_N",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_FFLearned_N",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_FB_N",
+  "debug_mvdc_tmpc_fast_debug_LongAcc_Control_N"],
+"labels":
+  ["FF Target", "FF Aero", "FF Learned", "FB", "Overall"]
+},
+"plot6": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["Tire utilization"],
+"ts":
+  ["debug_mvdc_trajectory_driver_perf_TireUtilization",
+  "debug_mvdc_tmpc_fast_debug_TireUtilizationTarget"],
+"labels":
+  ["Actual", "Target"]
+}
+}

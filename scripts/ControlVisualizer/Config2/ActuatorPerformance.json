@@ -1,0 +1,46 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Steering angle", "in rad"],
+"ts":
+  ["DCU_aWheelFMean",
+  "CMD_aWheelFSteer"],
+"labels":
+  ["Actual", "Target"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Powertrain"],
+"ts":
+  ["debug_VehicleSensorData_FxPowertrain_N",
+  "debug_VehicleSensorData_TzPowertrain_Nm",
+  "CMD_FVehicleTraction"],
+"labels":
+  ["Actual Fx in N", "Actual Mz in Nm",
+  "Target Fx in N"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["MOtor Torques","T in Nm"],
+"ts":
+  ["DCU_MWheelFL",
+   "DCU_MWheelFR",
+   "DCU_MWheelRL",
+   "DCU_MWheelRR"],
+"labels":
+  ["FL","FR","RL","RR"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Brake pressure", "p in bar"],
+"ts":
+  ["DCU_pBrakeF",
+   "DCU_pBrakeR"],
+"labels":
+  ["Front", "Rear"]
+}
+}

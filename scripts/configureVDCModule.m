@@ -11,15 +11,18 @@ function configureVDCModule(vehicle)
 try 
     % general stuff 
     configureDD('vehicleparameter', vehicle); 
-    configureDD('mloc_diag_vehicle', vehicle);
     % control component
     configureDD('mvdc_curvvel_tracking', vehicle); 
     configureDD('mvdc_path_feedback', vehicle);
     configureDD('mvdc_path_matching', vehicle);
+    configureDD('mvdc_mpc', vehicle);
+    configureDD('mvdc_disturbance_learning', vehicle);
+    configureDD('mvdc_trajectory_driver', vehicle);
     % state estimation component 
     configureDD('mvdc_KF_PointMassJoint', vehicle);
     configureDD('mvdc_state_estimation', vehicle);
     configureDD('mvdc_estimation_preprocessing', vehicle);
+    
 catch e
     warning(['Something went wrong during configuration of ' ...
             'vehicle dynamics control parameters']); 

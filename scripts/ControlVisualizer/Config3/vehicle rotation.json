@@ -1,0 +1,91 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["phi_{IV,x} in rad"],
+"ts": ["Vehicle.phi_I_Vehicle_rad"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["phi_{IV,y} in rad"],
+"ts": ["Vehicle.phi_I_Vehicle_rad"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot3": {
+"posx": "3",
+"posy": "1",
+"ylabel": ["phi_{IV,z} in rad"],
+"ts": ["Vehicle.phi_I_Vehicle_rad"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot4": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{V}omega_{V,x} in radps"],
+"ts": ["Vehicle.omega_V_Vehicle_radps"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot5": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["{}_{V}omega_{V,y} in radps"],
+"ts": ["Vehicle.omega_V_Vehicle_radps"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot6": {
+"posx": "3",
+"posy": "2",
+"ylabel": ["{}_{V}omega_{V,z} in radps"],
+"ts": ["Vehicle.omega_V_Vehicle_radps"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot7": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{V}alpha_{V,x} in radps2"],
+"ts": ["Vehicle.alpha_V_Vehicle_radps2"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot8": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["{}_{V}alpha_{V,y} in radps2"],
+"ts": ["Vehicle.alpha_V_Vehicle_radps2"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot9": {
+"posx": "3",
+"posy": "3",
+"ylabel": ["{}_{V}alpha_{V,z} in radps2"],
+"ts": ["Vehicle.alpha_V_Vehicle_radps2"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+}

@@ -46,6 +46,15 @@ x_m_gt = resample(ground_truth.SimRealState_x_m, t_vec);
 y_m_gt = resample(ground_truth.SimRealState_y_m, t_vec);
 x_m_se = resample(debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_x_m, t_vec);
 y_m_se = resample(debug.debug_mvdc_state_estimation_debug_StateEstimate_Pos_y_m, t_vec);
+
+if(visualize)
+    figure; hold on; grid on; 
+    plot(x_m_gt.Data, y_m_gt.Data); 
+    plot(x_m_se.Data, y_m_se.Data); 
+    axis equal;
+    legend('Ground Truth', 'State Estimation');
+end
+
 psi_rad_gt = -1*(resample(ground_truth.SimRealState_psi_rad, t_vec) + pi/2);
 dx = x_m_se.Data - x_m_gt.Data; 
 dy = y_m_se.Data - y_m_gt.Data; 
@@ -82,11 +91,6 @@ end
 
 if(compareSignals(ground_truth.SimRealState_vy_mps, debug.debug_mvdc_state_estimation_debug_StateEstimate_vy_mps,...
         tStart, 'Lateral velocity', PerformanceSpec.vyDevMax_mps, false, visualize) == 0)
-    result = 0; 
-end
-
-if(compareSignals(ground_truth.SimRealState_dPsi_radps, debug.debug_mvdc_state_estimation_debug_StateEstimate_dPsi_radps,...
-        tStart, 'Yaw rate', PerformanceSpec.dPsiDevMax_radps, false, visualize) == 0)
     result = 0; 
 end
 

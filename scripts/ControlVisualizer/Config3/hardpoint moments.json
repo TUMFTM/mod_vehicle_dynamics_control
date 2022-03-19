@@ -1,0 +1,31 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["{}_{V}T_{A,ji,x} in Nm"],
+"ts": ["Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{V}T_{A,ji,y} in Nm"],
+"ts": ["Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm"],
+"index1": ["2","2","2","2"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{V}T_{A,ji,z} in Nm"],
+"ts": ["Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm","Force.T_V_Hardpoints_Nm"],
+"index1": ["3","3","3","3"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+}

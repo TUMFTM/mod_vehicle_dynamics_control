@@ -29,12 +29,11 @@
    "debug_mvdc_curvvel_tracking_debug_Long_FB_Dist_FxReq_N",
    "debug_mvdc_curvvel_tracking_debug_Long_FF_Dist_FxReq_N",
    "debug_mvdc_curvvel_tracking_debug_Long_FF_Traj_FxReq_N",
-   "debug_mvdc_curvvel_tracking_debug_TCCorrectiveForce_N",
-   "debug_mvdc_curvvel_tracking_debug_MaximumLongForce_N",
+   "debug_mvdc_actuator_debug_TCCorrectiveForce_N",
    "debug_mvdc_curvvel_tracking_debug_Req_Fx_N"],
 "labels":
   ["FB Velocity Difference", "FB Disturbance", "FF Disturbance",
-    "FF Trajectory", "TC Correction", "TC Limit", "Overall"]
+    "FF Trajectory", "TC Correction", "Overall"]
 },
 "plot4": {
 "posx": "1",

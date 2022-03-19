@@ -1,0 +1,39 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Wheelspeed", "in radps"],
+"ts":
+  ["debug_VehicleSensorData_omega_WheelFL_radps",
+   "debug_VehicleSensorData_omega_WheelFR_radps",
+   "debug_VehicleSensorData_omega_WheelRL_radps",
+   "debug_VehicleSensorData_omega_WheelRR_radps"],
+"labels":
+  ["FL", "FR", "RL", "RR"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Long slip", "in perc"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_lambdaFL_perc",
+   "debug_mvdc_state_estimation_debug_StateEstimate_lambdaFR_perc",
+   "debug_mvdc_state_estimation_debug_StateEstimate_lambdaRL_perc",
+   "debug_mvdc_state_estimation_debug_StateEstimate_lambdaRR_perc"],
+"labels":
+  ["FL", "FR", "RL", "RR"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Side slip", "in rad"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_alphaFL_rad",
+   "debug_mvdc_state_estimation_debug_StateEstimate_alphaFR_rad",
+   "debug_mvdc_state_estimation_debug_StateEstimate_alphaRL_rad",
+   "debug_mvdc_state_estimation_debug_StateEstimate_alphaRR_rad",
+   "debug_mvdc_state_estimation_debug_StateEstimate_DiffFRAlpha_rad"],
+"labels":
+  ["FL", "FR", "RL", "RR", "Diff Front/Rear"]
+}
+}

@@ -1,0 +1,147 @@
+%% File    : osqp_sfun.tlc
+%% Abstract:
+%%      Inlines the OSQP wrapper
+%%
+
+%implements "osqp_sfun" "C"
+
+%% Function: BlockTypeSetup ====================================================
+%% Abstract:
+%%      Handles global setup, only required once per block type
+%%
+%function BlockTypeSetup(block, system) void
+  %openfile buffer
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+    #include "osqp_wrapper.h"
+    #ifdef __cplusplus
+    }
+    #endif
+  %closefile buffer
+  %<LibCacheFunctionPrototype(buffer)>
+%endfunction %% BlockTypeSetup
+
+%% Function: BlockInstanceSetup ====================================================
+%% Abstract:
+%%      Handles local setup, is required by every instance of this block
+%%
+%function BlockInstanceSetup(block, system) void
+    %<LibDefinePWork(block, "wrapper", 1)>
+%endfunction %% BlockInstanceSetup
+
+%% Function: Start ====================================================
+%% Abstract:
+%%
+%function Start(block,system) Output
+  %assign ptr = LibBlockPWork(wrapper, "", "", 0)
+  %assign p_0 = LibBlockParameterAddr(P1, "", "", 0)
+  %assign p_1 = LibBlockParameterAddr(P2, "", "", 0)
+  %assign p_2 = LibBlockParameterAddr(P3, "", "", 0)
+  %assign p_3 = LibBlockParameterAddr(P4, "", "", 0)
+  %assign p_4 = LibBlockParameterAddr(P5, "", "", 0)
+  %assign p_5 = LibBlockParameterAddr(P6, "", "", 0)
+  %assign p_6 = LibBlockParameterAddr(P7, "", "", 0)
+  %assign p_7 = LibBlockParameterAddr(P8, "", "", 0)
+  %assign p_8 = LibBlockParameterAddr(P9, "", "", 0)
+  %assign p_9 = LibBlockParameterAddr(P10, "", "", 0)
+  %assign p_10 = LibBlockParameterAddr(P11, "", "", 0)
+  %assign p_11 = LibBlockParameterAddr(P12, "", "", 0)
+  %assign p_12 = LibBlockParameterAddr(P13, "", "", 0)
+  %<ptr> = (void *)c_malloc(sizeof(osqp_wrapper));
+  init_osqp_wrapper((osqp_wrapper *)%<ptr>, (c_float*)%<p_0>, (c_float*)%<p_1>, (c_float*)%<p_2>,
+                    (c_float*)%<p_3>, (c_float*)%<p_4>, (c_float*)%<p_5>, (c_float*)%<p_6>,
+                    (c_float*)%<p_7>, (c_float*)%<p_8>, (c_float*)%<p_9>, (c_float*)%<p_10>,
+                    (c_float*)%<p_11>, (c_float*)%<p_12>);
+%endfunction %% Start
+
+%% Function: Outputs ===========================================================
+%% Abstract:
+%%      Adds update function call
+%%
+%function Outputs(block, system) Output
+  %assign ptr = LibBlockPWork(wrapper, "", "", 0)
+  %assign u0 = LibBlockInputSignalAddr(0, "", "", 0)
+  %assign u1 = LibBlockInputSignalAddr(1, "", "", 0)
+  %assign u2 = LibBlockInputSignalAddr(2, "", "", 0)
+  %assign u3 = LibBlockInputSignalAddr(3, "", "", 0)
+  %assign y0 = LibBlockOutputSignalAddr(0, "", "", 0)
+  %assign y1 = LibBlockOutputSignalAddr(1, "", "", 0)
+  %assign y2 = LibBlockOutputSignalAddr(2, "", "", 0)
+  %assign y3 = LibBlockOutputSignalAddr(3, "", "", 0)
+  %assign y4 = LibBlockOutputSignalAddr(4, "", "", 0)
+  %assign y5 = LibBlockOutputSignalAddr(5, "", "", 0)
+  %assign y6 = LibBlockOutputSignalAddr(6, "", "", 0)
+  %assign y7 = LibBlockOutputSignalAddr(7, "", "", 0)
+  %assign y8 = LibBlockOutputSignalAddr(8, "", "", 0)
+  %assign y9 = LibBlockOutputSignalAddr(9, "", "", 0)
+  %assign y10 = LibBlockOutputSignalAddr(10, "", "", 0)
+  %assign y11 = LibBlockOutputSignalAddr(11, "", "", 0)
+  %assign y12 = LibBlockOutputSignalAddr(12, "", "", 0)
+  %assign y13 = LibBlockOutputSignalAddr(13, "", "", 0)
+  %assign y14 = LibBlockOutputSignalAddr(14, "", "", 0)
+  %assign y15 = LibBlockOutputSignalAddr(15, "", "", 0)
+  %assign y16 = LibBlockOutputSignalAddr(16, "", "", 0)
+  %assign y17 = LibBlockOutputSignalAddr(17, "", "", 0)
+  %assign y18 = LibBlockOutputSignalAddr(18, "", "", 0)
+  %assign y19 = LibBlockOutputSignalAddr(19, "", "", 0)
+
+  update_osqp_wrapper((osqp_wrapper *)%<ptr>, (c_float*)%<u0>, (c_float*)%<u1>,
+    (c_float*)%<u2>, (c_float*)%<u3>);
+  for(int i = 0; i < (int)((osqp_wrapper *)%<ptr>)->n; i++){
+    (%<y0>)[i] = ((osqp_wrapper *)%<ptr>)->work->solution->x[i];
+  }
+  for(int i = 0; i < (int)((osqp_wrapper *)%<ptr>)->m; i++){
+    (%<y1>)[i] = ((osqp_wrapper *)%<ptr>)->work->solution->y[i];
+  }
+  for(int i = 0; i < (int)((osqp_wrapper *)%<ptr>)->m; i++){
+    (%<y10>)[i] = ((osqp_wrapper *)%<ptr>)->work->Ax[i] - ((osqp_wrapper *)%<ptr>)->work->z[i];
+  }
+  if (((osqp_wrapper *)%<ptr>)->work->settings->scaling){
+    *%<y17> = ((osqp_wrapper *)%<ptr>)->work->scaling->c;
+  }else{
+    *%<y17> = 1;
+  }
+  for(int i = 0; i < (int)((osqp_wrapper *)%<ptr>)->n; i++){
+    if (((osqp_wrapper *)%<ptr>)->work->settings->scaling){
+        (%<y18>)[i] = ((osqp_wrapper *)%<ptr>)->work->scaling->D[i];
+    }else{
+        (%<y18>)[i] = 1;
+    }
+  }
+  for(int i = 0; i < (int)((osqp_wrapper *)%<ptr>)->m; i++){
+    if (((osqp_wrapper *)%<ptr>)->work->settings->scaling){
+        (%<y19>)[i] = ((osqp_wrapper *)%<ptr>)->work->scaling->E[i];
+    }else{
+        (%<y19>)[i] = 1;
+    }
+  }
+
+  *%<y2> = ((osqp_wrapper *)%<ptr>)->work->info->solve_time;
+  *%<y3> = ((osqp_wrapper *)%<ptr>)->work->info->run_time;
+  *%<y4> = ((osqp_wrapper *)%<ptr>)->work->info->status_val;
+  *%<y5> = ((osqp_wrapper *)%<ptr>)->work->info->iter;
+  *%<y6> = ((osqp_wrapper *)%<ptr>)->work->info->update_time;
+  *%<y7> = 0;
+  *%<y8> = ((osqp_wrapper *)%<ptr>)->work->info->pri_res;
+  *%<y9> = ((osqp_wrapper *)%<ptr>)->work->info->dua_res;
+  *%<y11> = ((osqp_wrapper *)%<ptr>)->flag_bound_upd;
+  *%<y12> = ((osqp_wrapper *)%<ptr>)->flag_A_upd;
+  *%<y13> = ((osqp_wrapper *)%<ptr>)->flag_P_upd;
+  *%<y14> = ((osqp_wrapper *)%<ptr>)->flag_q_upd;
+  *%<y15> = ((osqp_wrapper *)%<ptr>)->flag_solve;
+  *%<y16> = ((osqp_wrapper *)%<ptr>)->flag_setup;
+
+%endfunction %% Outputs
+
+
+%% Function: Terminate ===========================================================
+%% Abstract:
+%%      Clean up allocated memory at the end of the execution
+%%
+%function Terminate(block, system) Output
+  %assign ptr = LibBlockPWork(wrapper, "", "", 0)
+    cleanup_osqp_wrapper((osqp_wrapper *)%<ptr>); 
+    free((osqp_wrapper *)%<ptr>); 
+%endfunction %% Terminate
+

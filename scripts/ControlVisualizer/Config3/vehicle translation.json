@@ -1,0 +1,91 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["{}_{I}r_{V,x} in m"],
+"ts": ["Vehicle.r_I_Vehicle_m"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["{}_{I}r_{V,y} in m"],
+"ts": ["Vehicle.r_I_Vehicle_m"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot3": {
+"posx": "3",
+"posy": "1",
+"ylabel": ["{}_{I}r_{V,z} in m"],
+"ts": ["Vehicle.r_I_Vehicle_m"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot4": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{V}v_{V,x} in mps"],
+"ts": ["Vehicle.v_V_Vehicle_mps"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot5": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["{}_{V}v_{V,y} in mps"],
+"ts": ["Vehicle.v_V_Vehicle_mps"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot6": {
+"posx": "3",
+"posy": "2",
+"ylabel": ["{}_{V}v_{V,z} in mps"],
+"ts": ["Vehicle.v_V_Vehicle_mps"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot7": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{V}a_{V,x} in mps2"],
+"ts": ["Vehicle.a_V_Vehicle_mps2"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot8": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["{}_{V}a_{V,y} in mps2"],
+"ts": ["Vehicle.a_V_Vehicle_mps2"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot9": {
+"posx": "3",
+"posy": "3",
+"ylabel": ["{}_{V}a_{V,z} in mps2"],
+"ts": ["Vehicle.a_V_Vehicle_mps2"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+}

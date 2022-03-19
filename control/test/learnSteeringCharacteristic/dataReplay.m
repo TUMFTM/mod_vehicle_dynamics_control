@@ -1,7 +1,7 @@
 % load dataset 
 load('SimTest.mat'); 
 % current data 
-steering_req_vec = debug.debug_mvdc_curvvel_tracking_debug_CO_RequestSteeringAngle_rad.Data; 
+steering_req_vec = debug.debug_mvdc_curvvel_tracking_debug_Req_Delta_rad.Data; 
 steering_vec = debug.debug_VehicleSensorData_Delta_Wheel_rad.Data; 
 kappa_vec = debug.debug_mvdc_state_estimation_debug_StateEstimate_kappa_radpm.Data; 
 velocity_vec = debug.debug_mvdc_state_estimation_debug_StateEstimate_v_mps.Data; 

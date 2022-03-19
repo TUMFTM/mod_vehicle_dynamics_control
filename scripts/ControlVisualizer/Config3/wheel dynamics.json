@@ -1,0 +1,41 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["omega_{Wji,y} in rad"],
+"ts": ["Wheel.omegay_W_Wheels_rad","Wheel.omegay_W_Wheels_rad","Wheel.omegay_W_Wheels_rad","Wheel.omegay_W_Wheels_rad"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["kappa_{Tji}"],
+"ts": ["Wheel.kappa_Tires","Wheel.kappa_Tires","Wheel.kappa_Tires","Wheel.kappa_Tires"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["alpha_{Tji} in rad"],
+"ts": ["Wheel.alpha_Tires_rad","Wheel.alpha_Tires_rad","Wheel.alpha_Tires_rad","Wheel.alpha_Tires_rad"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot4": {
+"posx": "1",
+"posy": "4",
+"ylabel": ["r_{e,ji} in m"],
+"ts": ["Wheel.re_WheelsEffective_m","Wheel.re_WheelsEffective_m","Wheel.re_WheelsEffective_m","Wheel.re_WheelsEffective_m"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+}

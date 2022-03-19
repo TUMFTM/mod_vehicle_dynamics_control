@@ -19,7 +19,7 @@ lastPoint_idx = lastPoint_idx_raw(2:end);
 nLaps = numel(lastPoint_idx);
 disp([num2str(nLaps) ' Lap(s) found']);  
 
-% get control errors
+% get control errors and KPIs
 CP.eTraj_lat_m_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_lateral_m.Data(lastPoint_idx); 
 CP.eTraj_lat_m_Peak = debug.debug_mvdc_trajectory_driver_perf_ePeak_lateral_m.Data(lastPoint_idx); 
 CP.eTraj_heading_rad_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_heading_rad.Data(lastPoint_idx); 
@@ -28,6 +28,19 @@ CP.eTraj_v_mps_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_v_mps.Data(las
 CP.eTraj_v_mps_Peak = debug.debug_mvdc_trajectory_driver_perf_ePeak_v_mps.Data(lastPoint_idx); 
 CP.eTraj_kappa_radpm_RMS = debug.debug_mvdc_trajectory_driver_perf_eRMS_kappa_radpm.Data(lastPoint_idx); 
 CP.eTraj_kappa_radpm_Peak = debug.debug_mvdc_trajectory_driver_perf_ePeak_kappa_radpm.Data(lastPoint_idx); 
+CP.LongJerk_mps3_RMS = debug.debug_mvdc_trajectory_driver_perf_LongJerkRMS_dax_mps3.Data(lastPoint_idx); 
+CP.LongJerk_mps3_Peak = debug.debug_mvdc_trajectory_driver_perf_LongJerkPeak_dax_mps3.Data(lastPoint_idx); 
+CP.LatJerk_mps3_RMS = debug.debug_mvdc_trajectory_driver_perf_LatJerkRMS_day_mps3.Data(lastPoint_idx); 
+CP.LatJerk_mps3_Peak = debug.debug_mvdc_trajectory_driver_perf_LatJerkPeak_day_mps3.Data(lastPoint_idx); 
+CP.SteeringRate_radps_RMS = debug.debug_mvdc_trajectory_driver_perf_SteeringRateRMS_dDelta_radps.Data(lastPoint_idx); 
+CP.SteeringRate_radps_Peak = debug.debug_mvdc_trajectory_driver_perf_SteeringRatePeak_dDelta_radps.Data(lastPoint_idx); 
+CP.ForceRate_Nps_RMS = debug.debug_mvdc_trajectory_driver_perf_ForceRateRMS_dF_Nps.Data(lastPoint_idx); 
+CP.ForceRate_Nps_Peak = debug.debug_mvdc_trajectory_driver_perf_ForceRatePeak_dF_Nps.Data(lastPoint_idx); 
+% get constraint violations
+CP.LatConstViolations = debug.debug_mvdc_trajectory_driver_perf_LatConstViolations.Data(lastPoint_idx); 
+CP.TireConstViolations = debug.debug_mvdc_trajectory_driver_perf_TireConstViolations.Data(lastPoint_idx); 
+% get laptime 
+CP.LapTime_s = debug.debug_mvdc_trajectory_driver_perf_LapTime_s.Data(lastPoint_idx);
 
 % if the plot is requested
 if(plotActive)
@@ -69,13 +82,24 @@ if(plotActive)
   set(gca, 'xticklabels', labels);
   grid on; 
   subplot(3, 2, 5); 
-  bar([CP.eControl_v_mps_RMS(plot_idx)'; CP.eControl_v_mps_Peak(plot_idx)']); 
+  bar([CP.eTraj_v_mps_RMS(plot_idx)'; CP.eTraj_v_mps_Peak(plot_idx)']); 
   ylabel({'Velocity control', 'error in mps'}); 
   set(gca, 'xticklabels', labels);
   grid on; 
   subplot(3, 2, 6); 
-  bar([CP.eControl_kappa_radpm_RMS(plot_idx)'; CP.eControl_kappa_radpm_Peak(plot_idx)']); 
+  bar([CP.eTraj_kappa_radpm_RMS(plot_idx)'; CP.eTraj_kappa_radpm_Peak(plot_idx)']); 
   ylabel({'Kappa control', 'error in radpm'}); 
   set(gca, 'xticklabels', labels);
   grid on; 
+  
+  % visualize constraint violations 
+  figure; 
+  subplot(2, 1, 1); hold on; grid on; 
+  xlabel('Lap'); ylabel('Laptime in s'); 
+  plot(CP.LapTime_s, '-x'); 
+  subplot(2, 1, 2); hold on; grid on; 
+  xlabel('Lap'); ylabel('Constraint violations per second'); 
+  plot(CP.LatConstViolations./CP.LapTime_s, '-x');
+  plot(CP.TireConstViolations./CP.LapTime_s, '-x');
+  legend('Lateral error', 'Acceleration limits'); 
 end

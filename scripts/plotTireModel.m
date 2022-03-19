@@ -8,18 +8,16 @@ function plotTireModel(PacParam, alpha_data, F_data)
     alphaMax = max(alpha_data); 
     alphaMin = min(alpha_data); 
   else
-    alphaMax = 0.3; 
-    alphaMin = -0.3;
+    alphaMax = 0.5; 
+    alphaMin = -0.5;
   end
-  Fz_nom = 3000;
   alpha_sample = alphaMin:0.002:alphaMax; 
-  %FyF = Fz./Fz_nom.*PacParam(3).*sin(PacParam(2).*atan(PacParam(1).*alpha_sample - PacParam(4).*(PacParam(1).*alpha_sample - atan(PacParam(1).*alpha_sample)))); 
-  FyF = PacParam(3).*sin(PacParam(2).*atan(PacParam(1).*alpha_sample)); 
-    scatter(alpha_sample, FyF, 'LineWidth', 2); 
+  FyF = PacParam(3).*sin(PacParam(2).*atan(PacParam(1).*alpha_sample - PacParam(4).*(PacParam(1).*alpha_sample - atan(PacParam(1).*alpha_sample)))); 
+  scatter(alpha_sample, FyF, 'LineWidth', 2); 
   xlabel('Side slip angle in rad'); 
   ylabel('Tire force in N'); 
   ylim([-6000, 6000]); 
   hold on; 
-  plot(alpha_sample, 3000*atan(35*alpha_sample)); 
+  plot(alpha_sample, PacParam(3).*sin(PacParam(2).*atan(PacParam(1).*alpha_sample))); 
   legend('Detailed Model', 'Simple Model for Control'); 
 end

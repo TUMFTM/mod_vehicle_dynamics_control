@@ -1,0 +1,48 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Steering angle", "in rad"],
+"ts":
+  ["debug_VehicleSensorData_Delta_Wheel_rad",
+   "debug_mvdc_actuator_debug_RequestSteeringAngle_rad",
+   "debug_mvdc_actuator_debug_steering_delta_target_rad",
+   "debug_mvdc_actuator_debug_steering_delta_error_rad"],
+"labels":
+  ["Actual", "Request", "Target", "Error"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Steering angle", "in rad"],
+"ts":
+  ["debug_mvdc_actuator_debug_steering_delta_FB_rad",
+   "debug_mvdc_actuator_debug_steering_delta_FB_p_rad",
+   "debug_mvdc_actuator_debug_steering_delta_FB_i_rad",
+   "debug_mvdc_actuator_debug_steering_delta_FB_d_rad",
+   "debug_mvdc_actuator_debug_steering_delta_FF_rad"],
+"labels":
+  ["FB", "FB p", "FB i", "FB d", "FF"]
+},
+"plot3": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["lateral acceleration", "in mps2"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_LatAcc_Target_mps2",
+   "debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2"],
+"labels":
+  ["Target", "State Estimate"]
+},
+"plot4": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Path coordinate", "d in m"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_d_m",
+   "debug_mvdc_path_matching_debug_ActualTrajPoint_tube_l_m",
+   "debug_mvdc_path_matching_debug_ActualTrajPoint_tube_r_m"],
+"labels":
+  ["d in m", "Left bound", "Right bound"]
+}
+}

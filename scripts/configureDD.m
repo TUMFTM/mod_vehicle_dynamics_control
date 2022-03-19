@@ -24,4 +24,7 @@ for i = 1:1:length(DD.DataSources)
 end
 % add the new vehicle specific reference
 addDataSource(DD, [vehicle '_' DDname]); 
+% save and close data dictionary 
+DD.saveChanges()
+DD.close()
 end

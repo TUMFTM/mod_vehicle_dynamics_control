@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Launch publisher node -->
+	<node pkg="tum_tmpc_control" exec="main" name="ControlHandler"/>
+</launch>

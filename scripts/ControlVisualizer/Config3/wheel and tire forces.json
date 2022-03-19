@@ -1,0 +1,31 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["{}_{T,ji}F_{T,ji,x} in N"],
+"ts": ["Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{T,ji}F_{T,ji,y} in N"],
+"ts": ["Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N"],
+"index1": ["2","2","2","2"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{T,ji}F_{T,ji,z} in N (without wheel mass)"],
+"ts": ["Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N","Force.F_T_Tires_N"],
+"index1": ["3","3","3","3"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+}

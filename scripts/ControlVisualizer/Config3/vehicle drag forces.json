@@ -1,0 +1,31 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["{}_{V}F_{d,x} in N"],
+"ts": ["Force.F_V_Drag_N"],
+"index1": ["1"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{V}F_{d,y} in N"],
+"ts": ["Force.F_V_Drag_N"],
+"index1": ["2"],
+"index2": ["1"],
+"labels": [""]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{V}F_{d,z} in N"],
+"ts": ["Force.F_V_Drag_N"],
+"index1": ["3"],
+"index2": ["1"],
+"labels": [""]
+}
+}

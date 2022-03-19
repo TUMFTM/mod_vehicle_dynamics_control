@@ -1,0 +1,62 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Acceleration x", "CG in mps2"],
+"ts":
+  ["debug_VehicleSensorData_ax_CoGIMU1_mps2",
+   "debug_VehicleSensorData_ax_CoGIMU2_mps2"],
+"labels":
+  ["IMU1", "IMU2"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Acceleration y", "CG in mps2"],
+"ts":
+  ["debug_VehicleSensorData_ay_CoGIMU1_mps2",
+   "debug_VehicleSensorData_ay_CoGIMU2_mps2"],
+"labels":
+  ["IMU1", "IMU2"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Acceleration z", "CG in mps2"],
+"ts":
+  ["debug_VehicleSensorData_az_CoGIMU1_mps2",
+   "debug_VehicleSensorData_az_CoGIMU2_mps2"],
+"labels":
+  ["IMU1", "IMU2"]
+},
+"plot4": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Roll rate", "in radps"],
+"ts":
+  ["debug_VehicleSensorData_dPhi_RollRateIMU1_radps",
+   "debug_VehicleSensorData_dPhi_RollRateIMU2_radps"],
+"labels":
+  ["IMU1", "IMU2"]
+},
+"plot5": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Pitch Rate", "in radps"],
+"ts":
+  ["debug_VehicleSensorData_dTheta_PitchRateIMU1_radps",
+   "debug_VehicleSensorData_dTheta_PitchRateIMU2_radps"],
+"labels":
+  ["IMU1", "IMU2"]
+},
+"plot6": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["Yaw rate", "in radps"],
+"ts":
+  ["debug_VehicleSensorData_dPsi_YawRateIMU1_radps",
+   "debug_VehicleSensorData_dPsi_YawRateIMU2_radps"],
+"labels":
+  ["IMU1", "IMU2"]
+}
+}

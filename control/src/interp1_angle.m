@@ -37,8 +37,8 @@ for i = 1:1:length(xq)
     idx_next = idx_next + 1; 
     if(idx_next > length(v))
       % if the end is reached, set the remaining values to zero
-      vq(i:length(xq)) = 0; 
-      break; 
+      vq(i:length(xq)) = v(end); 
+      return; 
     end
   end
   % if the distance change between two points at the path is larger than one pi, this 

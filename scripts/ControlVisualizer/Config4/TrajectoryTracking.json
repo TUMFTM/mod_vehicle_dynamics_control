@@ -1,0 +1,32 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Velocity", "in mps"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_v_mps",
+  "debug_mvdc_path_matching_debug_ActualTrajPoint_v_mps"],
+"labels":
+  ["Actual", "Target (Trajectory)"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Curvature", "in radpm"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_kappa_radpm",
+  "debug_mvdc_path_matching_debug_ActualTrajPoint_kappa_radpm"],
+"labels":
+  ["Actual", "Target (Trajectory)"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Long. Acceleration","in mps2"],
+"ts":
+  ["debug_mvdc_state_estimation_debug_StateEstimate_ax_mps2",
+  "debug_mvdc_path_matching_debug_ActualTrajPoint_ax_mps2"],
+"labels":
+  ["Actual", "Target (Trajectory)"]
+}
+}

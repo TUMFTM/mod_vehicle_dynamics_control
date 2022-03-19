@@ -20,11 +20,16 @@ function [psi_rad] = calcPathHeading(x_m, y_m)
 
 % initialize variables
 psi_rad = zeros(length(x_m), 1); 
-% calculate position difference between points 
-dx = diff(x_m); 
-dy = diff(y_m); 
-% output angle is zero in north direction and limited to +pi/-pi
-psi_rad(1:(end-1)) = normalizeAngle(atan2(dy, dx) - pi/2); 
+for i = 2:1:(length(x_m)-1)
+    % calculate position difference between points 
+    dx = x_m(i+1) - x_m(i-1); 
+    dy = y_m(i+1) - y_m(i-1); 
+    % output angle is zero in north direction and limited to +pi/-pi
+    psi_rad(i) = normalizeAngle(atan2(dy, dx) - pi/2); 
+end
+% first value is assumed to be equal to the point after as no better
+% information is available 
+psi_rad(1) = psi_rad(2); 
 % last value is assumed to be equal to the point before as no better
 % information is available 
 psi_rad(end) = psi_rad(end-1); 

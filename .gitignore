@@ -51,3 +51,27 @@ scripts/MPCVisualizer/venv/*
 
 # ROS stuff
 *.bag
+
+*.whl
+
+# sphinx related content
+/venv/*
+/docs/build/*
+
+misc/py_binds/tum_mcs/src_dist/__pycache__/
+
+misc/py_binds/__pycache__/
+
+misc/py_binds/tum_mcs/__pycache__/
+
+misc/py_binds/tum_mcs/examples/__pycache__/
+
+misc/py_binds/tum_mcs/src/__pycache__/
+
+misc/py_binds/tum_mcs/examples/src/__pycache__/
+
+misc/py_binds/tum_mcs/examples/raceline_driving/__pycache__/
+
+misc/py_binds/tum_mcs/data/inputs/tpamaps/*.csv
+
+venv/

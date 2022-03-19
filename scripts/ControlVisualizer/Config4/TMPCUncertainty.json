@@ -1,0 +1,32 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Uncertainty", "ax in mps2"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_ax_Uncertainty_mps2",
+  "debug_mvdc_tmpc_fast_debug_ax_LearnedBound_mps2"],
+"labels":
+  ["Actual", "Bound"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Uncertainty", "ay in mps2"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_ay_Uncertainty_mps2",
+  "debug_mvdc_tmpc_fast_debug_ay_LearnedBound_mps2"],
+"labels":
+  ["Actual", "Bound"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Data Coverage", "in perc"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_ax_DataCoverage_perc",
+  "debug_mvdc_tmpc_fast_debug_ay_DataCoverage_perc"],
+"labels":
+  ["ax", "ay"]
+}
+}

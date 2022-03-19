@@ -1,0 +1,31 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["phi_{IV} in rad"],
+"ts": ["Vehicle.phi_I_Vehicle_rad","Vehicle.phi_I_Vehicle_rad","Vehicle.phi_I_Vehicle_rad"],
+"index1": ["1","2","3"],
+"index2": ["1","1","1"],
+"labels": ["x","y","z"]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{V}omega_{IV} in radps"],
+"ts": ["Vehicle.omega_V_Vehicle_radps","Vehicle.omega_V_Vehicle_radps","Vehicle.omega_V_Vehicle_radps"],
+"index1": ["1","2","3"],
+"index2": ["1","1","1"],
+"labels": ["x","y","z"]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{V}alpha_{IV} in radps2"],
+"ts": ["Vehicle.alpha_V_Vehicle_radps2","Vehicle.alpha_V_Vehicle_radps2","Vehicle.alpha_V_Vehicle_radps2"],
+"index1": ["1","2","3"],
+"index2": ["1","1","1"],
+"labels": ["x","y","z"]
+}
+}

@@ -1,0 +1,41 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Path coordinate", "s in m"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_s_m"],
+"labels":
+  ["s in m"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Path coordinate", "d in m"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_d_m",
+   "debug_mvdc_path_matching_debug_ActualTrajPoint_tube_l_m",
+   "debug_mvdc_path_matching_debug_ActualTrajPoint_tube_r_m"],
+"labels":
+  ["d in m", "Left bound", "Right bound"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Path coordinate", "psi in rad"],
+"ts":
+  ["debug_mvdc_path_matching_debug_PathPos_psi_rad"],
+"labels":
+  ["psi in rad"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Path coordinate", "derivative in mps"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_dot_d_numerical_mps",
+   "debug_mvdc_tmpc_fast_debug_dot_d_analytical_mps"],
+"labels":
+  ["numerical", "analytical"]
+}
+}

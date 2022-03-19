@@ -1,0 +1,31 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["{}_{I}r_{A,ji,x} in m"],
+"ts": ["Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m"],
+"index1": ["1","1","1","1"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["{}_{I}r_{A,ji,y} in m"],
+"ts": ["Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m"],
+"index1": ["2","2","2","2"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+,
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["{}_{I}r_{A,ji,z} in m"],
+"ts": ["Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m","Vehicle.r_I_Hardpoints_m"],
+"index1": ["3","3","3","3"],
+"index2": ["1","2","3","4"],
+"labels": ["FL","FR","RL","RR"]
+}
+}

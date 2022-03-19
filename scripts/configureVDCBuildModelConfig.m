@@ -18,11 +18,6 @@ try
     newConfig = getValue(newConfigEntry); 
     newConfig.Name = 'Active'; 
     setValue(buildConfigEntry, newConfig);
-    buildConfigEntry = getEntry(ConfigurationsDD, 'Active_Multiple');
-    newConfigEntry = getEntry(ConfigurationsDD, [config '_Multiple']);
-    newConfig = getValue(newConfigEntry); 
-    newConfig.Name = 'Active_Multiple'; 
-    setValue(buildConfigEntry, newConfig);
     % reconfigure sample rate 
     DesignDD = getSection(modelConfigDD,'Design Data');
     SampleRateEntry = getEntry(DesignDD,'tS');

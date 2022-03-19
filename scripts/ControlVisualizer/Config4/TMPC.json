@@ -1,0 +1,51 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Cost"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_state_cost",
+  "debug_mvdc_tmpc_fast_debug_input_cost",
+  "debug_mvdc_tmpc_fast_debug_reg_cost",
+  "debug_mvdc_tmpc_fast_debug_slack_cost"],
+"labels":
+  ["States", "Inputs", "Regularization", "Slacks"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Runtime in s"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_solver_runTime_s"],
+"labels":
+  ["Runtime in s"]
+},
+"plot3": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Iterations"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_solver_iteration"],
+"labels":
+  ["Iterations"]
+},
+"plot4": {
+"posx": "1",
+"posy": "4",
+"ylabel": ["Solver state"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_solver_state"],
+"labels":
+  ["Solver state"]
+},
+"plot5": {
+"posx": "1",
+"posy": "5",
+"ylabel": ["Residuals"],
+"ts":
+  ["debug_mvdc_tmpc_fast_debug_solver_pri_res",
+  "debug_mvdc_tmpc_fast_debug_solver_dua_res"],
+"labels":
+  ["Primal", "Dual"]
+}
+}

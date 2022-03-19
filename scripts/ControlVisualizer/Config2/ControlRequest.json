@@ -1,0 +1,20 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Requested Steering", "Angle in rad"],
+"ts":
+  ["CMD_aWheelFSteer"],
+"labels":
+  ["Delta"]
+},
+"plot2": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Requested Longitudinal", "Force in N"],
+"ts":
+  ["CMD_FVehicleTraction"],
+"labels":
+  ["F Powertrain"]
+}
+}

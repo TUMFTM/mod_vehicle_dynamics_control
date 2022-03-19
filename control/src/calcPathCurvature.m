@@ -20,12 +20,15 @@ function [kappa_radpm] = calcPathCurvature(s_m, psi_rad)
 
 % initialize variables
 kappa_radpm = zeros(length(psi_rad), 1); 
-% calculate heading differen between the points 
-dPsi = normalizeAngle(diff(psi_rad));
-% calculate path distance between the points
-dS = diff(s_m);
-% calculate path curvature 
-kappa_radpm(1:(end-1)) = dPsi./dS; 
+for i = 2:1:length(psi_rad)-1
+    % calculate two sided difference
+   dPsi = normalizeAngle(psi_rad(i+1) - psi_rad(i-1)); 
+   dS = s_m(i+1) - s_m(i-1); 
+   kappa_radpm(i) = dPsi/dS; 
+end
+% first value is assumed to be equal to the point after as no better
+% information is available 
+kappa_radpm(1) = kappa_radpm(2); 
 % assume last point to have same curvature as point before, as no better
 % information is available
 kappa_radpm(end) = kappa_radpm(end-1); 

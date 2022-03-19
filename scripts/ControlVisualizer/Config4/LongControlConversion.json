@@ -1,0 +1,62 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Engine Torque", "in Nm"],
+"ts":
+  ["debug_mvdc_actuator_debug_T_max_Nm",
+  "debug_mvdc_actuator_debug_T_min_Nm",
+  "debug_mvdc_actuator_debug_T_request_Nm",
+  "debug_mvdc_actuator_debug_T_engine_Nm"],
+"labels":
+  ["Max", "Min", "Request", "Engine"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Powertrain"],
+"ts":
+  ["debug_mvdc_actuator_debug_RequestLongForce_N"],
+"labels":
+  ["Target Fx in N"]
+},
+"plot3": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Throttle in 0-1"],
+"ts":
+  ["debug_mvdc_actuator_debug_p_throttle_pos"],
+"labels":
+  ["Throttle in 0-1"]
+},
+"plot4": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Engine speed","in radps"],
+"ts":
+  ["debug_VehicleSensorData_omega_Engine_radps"],
+"labels":
+  ["Engine speed"]
+},
+"plot5": {
+"posx": "2",
+"posy": "3",
+"ylabel": ["Brake pressure", "p in bar"],
+"ts":
+  ["debug_VehicleSensorData_p_BrakeF_bar",
+   "debug_VehicleSensorData_p_BrakeR_bar",
+   "debug_mvdc_actuator_debug_p_Brake_bar"],
+"labels":
+  ["Front", "Rear", "Target"]
+},
+"plot6": {
+"posx": "1",
+"posy": "3",
+"ylabel": ["Gear"],
+"ts":
+  ["debug_mvdc_actuator_debug_gear",
+   "debug_VehicleSensorData_GearEngaged"],
+"labels":
+  ["Request", "Actual"]
+}
+}

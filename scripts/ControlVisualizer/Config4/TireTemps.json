@@ -1,0 +1,58 @@
+{
+"plot1": {
+"posx": "1",
+"posy": "1",
+"ylabel": ["Tire Temp FL"],
+"ts":
+  ["debug_VehicleSensorData_T_TireFL_Celsius_1",
+  "debug_VehicleSensorData_T_TireFL_Celsius_2",
+  "debug_VehicleSensorData_T_TireFL_Celsius_3",
+  "debug_VehicleSensorData_T_TireFL_Celsius_4",
+  "debug_mvdc_state_estimation_debug_StateEstimate_v_mps",
+  "debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2"],
+"labels":
+  ["T1", "T2", "T3", "T4", "v mps", "ay mps2"]
+},
+"plot2": {
+"posx": "2",
+"posy": "1",
+"ylabel": ["Tire Temp FR"],
+"ts":
+  ["debug_VehicleSensorData_T_TireFR_Celsius_1",
+  "debug_VehicleSensorData_T_TireFR_Celsius_2",
+  "debug_VehicleSensorData_T_TireFR_Celsius_3",
+  "debug_VehicleSensorData_T_TireFR_Celsius_4",
+  "debug_mvdc_state_estimation_debug_StateEstimate_v_mps",
+  "debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2"],
+"labels":
+  ["T1", "T2", "T3", "T4", "v mps", "ay mps2"]
+},
+"plot3": {
+"posx": "1",
+"posy": "2",
+"ylabel": ["Tire Temp RL"],
+"ts":
+  ["debug_VehicleSensorData_T_TireRL_Celsius_1",
+  "debug_VehicleSensorData_T_TireRL_Celsius_2",
+  "debug_VehicleSensorData_T_TireRL_Celsius_3",
+  "debug_VehicleSensorData_T_TireRL_Celsius_4",
+  "debug_mvdc_state_estimation_debug_StateEstimate_v_mps",
+  "debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2"],
+"labels":
+  ["T1", "T2", "T3", "T4", "v mps", "ay mps2"]
+},
+"plot4": {
+"posx": "2",
+"posy": "2",
+"ylabel": ["Tire Temp RR"],
+"ts":
+  ["debug_VehicleSensorData_T_TireRR_Celsius_1",
+  "debug_VehicleSensorData_T_TireRR_Celsius_2",
+  "debug_VehicleSensorData_T_TireRR_Celsius_3",
+  "debug_VehicleSensorData_T_TireRR_Celsius_4",
+  "debug_mvdc_state_estimation_debug_StateEstimate_v_mps",
+  "debug_mvdc_state_estimation_debug_StateEstimate_ay_mps2"],
+"labels":
+  ["T1", "T2", "T3", "T4", "v mps", "ay mps2"]
+}
+}

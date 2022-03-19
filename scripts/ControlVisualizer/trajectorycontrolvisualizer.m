@@ -470,7 +470,7 @@ switch analysismode
                 end        
                 try
                     % get plot configuration
-                    myjson=fileread([handles.plotConfig_path '\' handles.plotIDs{i} '.json']); 
+                    myjson=fileread([handles.plotConfig_path '/' handles.plotIDs{i} '.json']); 
                     myjson_parsed = jsondecode(myjson); 
                     visz_plotGroup(createPlotGroup(analysisdata, analysismode, myjson_parsed), ...
                       handles.fig_array{i}, tStart, tEnd); 
